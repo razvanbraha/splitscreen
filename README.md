@@ -4,9 +4,9 @@
 
 ### Team Members
 
-- [Name of Team Member 1] (unityid)
-- [Name of Team Member 2] (unityid)
-- [Name of Team Member 3] (unityid)
+- Razvan Braha (unityid)
+- Morgan Sawyer (unityid)
+- Riley Wickens (rkwicken)
 
 ### Contents
 
