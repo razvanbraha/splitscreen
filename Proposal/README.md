@@ -18,6 +18,8 @@
 
 ### Mobile Views
 
+https://www.figma.com/design/uPYV69kbb4RVqpyomXhSlL/Splitscreen-Wireframes?node-id=0-1&p=f&t=V4FG0s3l0ho9oN0G-0 
+
 ### Desktop Views
 
 ## Sources of Data Needed
