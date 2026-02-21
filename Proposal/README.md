@@ -14,13 +14,18 @@
 
 ## Wireframes
 
-*[Include supporting draft wireframes of the main views illustrating how you envision your application will work. Remember that PWAs are mobile-first, so your wireframes should reflect this (mobile view and desktop view).]*
-
 ### Mobile Views
 
-https://www.figma.com/design/uPYV69kbb4RVqpyomXhSlL/Splitscreen-Wireframes?node-id=0-1&p=f&t=V4FG0s3l0ho9oN0G-0 
+![Top Half Mobile View Wireframes](Wireframes/Splitscreen-Phone-top-wireframe.png)
+![Bottom Half Mobile View Wireframes](Wireframes/Splitscreen-Phone-bottom-wireframe.png)
+
+Figma Link: https://www.figma.com/design/uPYV69kbb4RVqpyomXhSlL/Splitscreen-Wireframes?node-id=0-1&p=f&t=V4FG0s3l0ho9oN0G-0 
 
 ### Desktop Views
+
+![Desktop View Wireframes](Wireframes/Splitscreen_Website_Wireframe.png)
+
+Figma Link: https://www.figma.com/design/2jU7hkhojJmDua7A6JK25W/Splitscreen-Web-Wireframe?node-id=0-1&m=dev&t=DDDlYHxz6stKJogG-1
 
 ## Sources of Data Needed
 
@@ -40,12 +45,11 @@ https://www.figma.com/design/uPYV69kbb4RVqpyomXhSlL/Splitscreen-Wireframes?node-
 * Contribution 2
 * ...
 
-#### [Name of Team Member 3]
+#### Riley Wickens
 
-* Contribution 1
-* Contribution 2
-* ...
-
+* Website Wireframes
+* Mobile Wireframes
+  
 #### Milestone Effort Contribution
 
 <!-- Must add to 100% -->
