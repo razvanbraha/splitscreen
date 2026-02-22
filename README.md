@@ -1,11 +1,11 @@
-# CSC 342 Team Project - Team [NAME]
+# CSC 342 Team Project - Team [R]
 
-## [Project Title]
+## [Splitscreen]
 
 ### Team Members
 
 - Razvan Braha (unityid)
-- Morgan Sawyer (unityid)
+- Morgan Sawyer (mmsawye2)
 - Riley Wickens (rkwicken)
 
 ### Contents
