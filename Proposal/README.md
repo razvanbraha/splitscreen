@@ -9,6 +9,59 @@ When looking at video game platforms, people love to congregate there and share 
 ## Feature Description
 
 *[The general features your application provides. What are the things users will be able to accomplish with your app?]*
+#### Profile Features
+Our application will provide users with a profile that aggregates all of their gaming activity across multiple platforms. This will allow users to showcase their gaming history, reviews, and activity in one location.
+Users can:
+- Display favorite games
+- Track game status
+- View personal review history
+- Manage account settings and preferences
+
+#### Game Review System
+Users will be able to rate and review video games using a structured rating system. This feature supports discussion and shared community experiences, which are very important to modern gaming culture.
+Core components:
+- Star-based rating system
+- Written reviews
+- Viewing community reviews
+
+#### Social Activity
+To replicate the feeling found on platforms like Steam, Xbox, and Playstation this app will include an activity feed. When signed in users will see real-time friend activity.
+The feed will display:
+- Friend reviews
+- Recently played games
+- Game progress updates
+
+#### Friend System 
+This feature will include a built-in friend system to enable community interaction. This feature strengthens community building, which is something that has been used in major gaming ecosystems.
+Users can:
+- Send and accept friend requests
+- View friend profiles
+- Track friends' gaming activity
+
+#### Game Discovery
+A searchable game catalog will allow users to explore games across platforms. This addresses the issue of games being fragmented across different gaming services.
+Filters for the search will include:
+- Genre
+- Ratings
+- Platform
+- Age ratings
+
+#### PWA Functionality
+As a PWA, the application will support offline interaction. When connectivity is restored, user content will automatically sync to the server, ensuring uninterrupted engagement.
+Features include:
+- Viewing previously loaded pages
+- Accessing past reviews without internet
+- Writing reviews offline
+
+#### Account Settings
+Users will be able to customize their experience through an account settings page. This allows personalization and increases identity within the platform.
+Settings include:
+- Username and profile management
+- Content visibility preferences
+- Favorite game selection
+- Privacy controls
+
+---
 
 ### PWA Capabilities
 
@@ -37,15 +90,15 @@ Figma Link: https://www.figma.com/design/2jU7hkhojJmDua7A6JK25W/Splitscreen-Web-
 
 *[What data do you need for this to work, and how will you get it? For example, External APIs, web scraping, public datasets, etc.]*
 
-Videogame database API - IGDB
+To support discovery, game pages, filtering, and reviews, the application will need video game metadata, including game identity (title, cover art, summaries), release information, categorization, ratings, age guidance, and developer information. We will use the IGDB videogame database API as our single source for game data. The backend will make a call to IGDB every time a user searches for a game, opens a game page, browses lists, and filters content. IGDB requests will be made from  the backend to protect API credentials, validate data before sending it to the client, and to allow caching. IGDB provides coverage across platforms, making this the perfect option for an app that wants community interaction from all platforms.
 
 ## Team Member Contributions
 
 #### Razvan Braha
 
-* Contribution 1
-* Contribution 2
-* ...
+* Feature Description
+* Sources of Data
+* Reviewed Wireframes
 
 #### Morgan Sawyer
 
@@ -60,6 +113,6 @@ Videogame database API - IGDB
   
 #### Milestone Effort Contribution
 
-Team Member 1 | Morgan Sawyer | Riley Wickens
+Razvan Braha  | Morgan Sawyer | Riley Wickens
 ------------- | ------------- | --------------
 33.33%            | 33.33%            | 33.33%
