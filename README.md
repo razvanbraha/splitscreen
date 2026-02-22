@@ -4,7 +4,7 @@
 
 ### Team Members
 
-- Razvan Braha (unityid)
+- Razvan Braha (rbraha)
 - Morgan Sawyer (mmsawye2)
 - Riley Wickens (rkwicken)
 
