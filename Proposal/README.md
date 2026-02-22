@@ -1,4 +1,4 @@
-# [Splitscreen]
+Splitscreen Social App
 
 ## Problem Statement
 
@@ -35,9 +35,11 @@ Figma Link: https://www.figma.com/design/2jU7hkhojJmDua7A6JK25W/Splitscreen-Web-
 
 *[What data do you need for this to work, and how will you get it? For example, External APIs, web scraping, public datasets, etc.]*
 
+Videogame database API - IGDB
+
 ## Team Member Contributions
 
-#### [Name of Team Member 1]
+#### Razvan Braha
 
 * Contribution 1
 * Contribution 2
@@ -55,8 +57,6 @@ Figma Link: https://www.figma.com/design/2jU7hkhojJmDua7A6JK25W/Splitscreen-Web-
 * Mobile Wireframes
   
 #### Milestone Effort Contribution
-
-<!-- Must add to 100% -->
 
 Team Member 1 | Morgan Sawyer | Riley Wickens
 ------------- | ------------- | --------------
