@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <script src="./js/carousel.js" defer></script>
     <title>Home page</title>
 </head>
 <body>
@@ -21,10 +24,201 @@
         </div>
     </nav>
 
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasiss bg-body-secondary">
-        <div class="col-lg-6 px-0">
-            Hello
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12 col-md-8">
+                <h6 class="mt-1">Featured</h6>
+                <div class="featured-game ">
+                    <div class="row g-0">
+                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                            <div class="text-center p-2">
+                                <!--- Temp image for display purposes -->
+                                <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Featured Video Game Cover">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="featured-game-written">
+                                <div class="featured-game-title d-flex align-items-center">
+                                    <h4 id="featured-game-title">Game Title</h4>
+                                </div>
+                                <div id="featured-genres" class="featured-info">
+                                    <h6>Genres</h6>
+                                </div>
+                                <div id="featured-ratings" class="featured-info">
+                                    <div class="ratings-title">
+                                        <h6>Ratings</h6>
+                                    </div>
+                                    <div class="ratings">
+                                        <div>★ 1</div>
+                                        <div>★ 2</div>
+                                        <div>★ 3</div>
+                                        <div>★ 4</div>
+                                        <div>★ 5</div>
+                                    </div>
+                                </div>
+                                <div id="featured-info" class="featured-info">
+                                    <div id="featured-platforms">
+                                        <h6>Platforms</h6>
+                                    </div>
+                                    <div id="featured-age-ratings">
+                                        <h6>Age-Ratings</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column recent-releases">
+                        <h6 class="mt-1">Recent Releases</h6>
+                        <div id="recent-release-carousel" class="carousel slide">
+                            <div id="rr-carousel-inner" class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <!--- Temp items for demonstration purposes, will normally be loaded from template -->
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="rr-carousel-control-prev" class="carousel-control-prev" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button id="rr-carousel-control-next" class="carousel-control-next" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column coming-soon">
+                        <h6 class="mt-1">Coming Soon</h6>
+                        <div id="coming-soon-carousel" class="carousel slide">
+                            <div id="cs-carousel-inner" class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <!--- Temp items for demonstration purposes, will normally be loaded from template -->
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="cs-carousel-control-prev" class="carousel-control-prev" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button id="cs-carousel-control-next" class="carousel-control-next" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <h6 class="mt-1">Friends' Recent Activity</h6>
+                <div class="friend-activity text-center p-2">
+                    Sign in to see Friend Activity
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- TODO FINISH FOOTER -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
+        <div>Footer</div>
+    </footer>
+
+    <template id="friendActivityTemplate">
+        <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
+    </template>
+
+
+    <template id="videogameLesserFeatureTemplate">
+        <div class="carousel-item">
+            <div class="card border-0">
+                <div class="game-img-wrapper">
+                    <a>
+                        <img class="card-img-top" src="" alt=""/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
+
 </body>
 </html>
