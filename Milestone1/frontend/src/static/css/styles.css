@@ -98,6 +98,10 @@ h6 {
     flex: 0 0 calc(100%/2);
 }
 
+.modal-backdrop.show {
+    opacity: 0.8;
+}
+
 @media screen and (min-width:576px) {
     .carousel-item {
         flex: 0 0 calc(100%/3);

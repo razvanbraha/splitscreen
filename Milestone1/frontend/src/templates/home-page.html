@@ -20,7 +20,14 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <button class="btn btn-sm btn-outline-secondary" type="button">Sign-In</button>
+            <button 
+                class="btn btn-sm btn-outline-secondary" 
+                type="button"
+                data-bs-toggle="modal" 
+                data-bs-target="#signInModal"
+            >
+                Sign-In
+            </button>
         </div>
     </nav>
 
@@ -193,6 +200,100 @@
                 <h6 class="mt-1">Friends' Recent Activity</h6>
                 <div class="friend-activity text-center p-2">
                     Sign in to see Friend Activity
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="signInModalLabel">Sign In</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="passwordInput" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordInput">
+                        </div>
+
+                        <div class="d-grid gap-3 mt-4">
+                            <button type="submit" class="btn btn-light btn-lg">Sign In</button>
+
+                            <div class="d-flex align-items-center text-secondary">
+                                <hr class="flex-grow-1 m-0">
+                                <span>Or</span>
+                                <hr class="flex-grow-1 m-0">
+                            </div>
+
+                            <button 
+                                type="button" 
+                                class="btn btn-primary btn-lg"
+                                data-bs-target="#signUpModal"
+                                data-bs-toggle="modal"
+                                data-bs-dismiss="modal"     
+                            >
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="signUpModalLabel">Create Account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="signUpEmail" class="form-label">Email Adress</label>
+                            <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signUpUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="signUpUsername">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signUpPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signUpPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword">
+                        </div>
+
+                        <div class="d-grid gap-3 mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+
+                            <button
+                                type="button"
+                                class="btn btn-light btn-lg"
+                                data-bs-target="#signInModal"
+                                data-bs-toggle="modal"
+                                data-bs-dismiss="modal"
+                            >
+                                Back to Sign In
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
