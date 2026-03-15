@@ -6,15 +6,16 @@
 
 ### Completed Features
 
-* Feature 1
-* Feature 2
-* ...
+* Home page
+* Login & Sign up pop-ups
+* Game page
+* User page
 
 ### Pending Features
 
-* Feature A
-* Feature B
-* ...
+* API & frontend intergation
+* Profile & Settings page
+* Frontend JS functionality
 
 
 ### Page Implementation Progress
@@ -26,10 +27,10 @@ Page    | Status | Wireframe
 Homepage| ✅     | 
 Login   | ✅     |
 Signup  | ✅     |
-Game    | 0%     | [wireframe](link_to_wireframe)
-Friend  | 0%     |
-User    | 0%     | [wireframe](link_to_wireframe)
-Settings| 0%     | ...
+Game    | ✅     | 
+User    | ✅     |
+Profile | 60%     | [wireframe](link_to_wireframe)
+Settings| 90%     | [wireframe](link_to_wireframe)
 
 
 
@@ -66,9 +67,10 @@ Method  | Route                         | Description
 
 #### Riley Wickens
 
-* Homepage
+* Home page
+* Profile & Settings page
 * API documentation
-* 
+* Initial API Setup
 
 #### Razvan Braha
 
@@ -79,8 +81,7 @@ Method  | Route                         | Description
 #### Morgan Sawyer
 
 * Game page
-* Friend page
-* ...
+* User page
 
 #### Milestone Effort Contribution
 
@@ -88,4 +89,4 @@ Method  | Route                         | Description
 
 Riley Wickens | Razvan Braha  | Morgan Sawyer
 ------------- | ------------- | --------------
-X%            | Y%            | Z%
+40%           | 25%           | 35%
