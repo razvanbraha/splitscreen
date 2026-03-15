@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <script src="./js/carousel.js" defer></script>
+    <title>Friends page</title>
+</head>
+<body>
+    <nav class="navbar sticky-top bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
+                SplitScreen
+            </a>
+            <form class="d-flex w-50" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <button 
+                class="btn btn-sm btn-outline-secondary" 
+                type="button"
+                data-bs-toggle="modal" 
+                data-bs-target="#signInModal"
+            >
+                Sign-In
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12 col-md-8">
+                <h6 class="mt-1">Username Information</h6>
+                <button id="send-friend-request">Send Friend Request</button>
+                <div class="user-information">
+                    <div class="row g-0">
+                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                            <h4>Username</h4>
+                            <div class="user-stats">
+                                <div id="game-stats">
+                                    <h6>Game Stats</h6>
+                                    <div id="playing">Playing:</div>
+                                    <div id="finished">Finished:</div>
+                                    <div id="dropped">Dropped:</div>
+                                    <div id="Reviewed">Reviewd:</div>
+                                </div>
+                                <div id="ratings">
+                                    <h6>Ratings</h6>
+                                    <div id="1-star">1 *Star*</div>
+                                    <div id="2-star">2 *Star*</div>
+                                    <div id="3-star">3 *Star*</div>
+                                    <div id="4-star">4 *Star*</div>
+                                    <div id="5-star">5 *Star*</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="favorite-games">
+                                <div class="text-center p-2">
+                                    <!--- Temp images for display purposes -->
+                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 1">
+                                </div>
+                                <div class="text-center p-2">
+                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 2">
+                                </div>
+                                <div class="text-center p-2">
+                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 3">
+                                </div>
+                                <div class="text-center p-2">
+                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column recent-releases">
+                        <h6 class="mt-1">Finished Games</h6>
+                        <div id="recent-release-carousel" class="carousel slide">
+                            <div id="rr-carousel-inner" class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <!--- Temp items for demonstration purposes, will normally be loaded from template -->
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <div class="card border-0">
+                                        <div class="game-img-wrapper">
+                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="rr-carousel-control-prev" class="carousel-control-prev" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button id="rr-carousel-control-next" class="carousel-control-next" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <h6 class="mt-1">Recent Activity</h6>
+                <div class="friend-activity text-center p-2">
+                    Friend's Activity Placeholder
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO FINISH FOOTER -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
+        <div>Footer</div>
+    </footer>
+
+    <template id="friendActivityTemplate">
+        <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
+    </template>
+
+
+    <template id="videogameLesserFeatureTemplate">
+        <div class="carousel-item">
+            <div class="card border-0">
+                <div class="game-img-wrapper">
+                    <a>
+                        <img class="card-img-top" src="" alt=""/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</body>
+</html>
