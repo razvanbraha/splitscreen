@@ -35,46 +35,54 @@
         <div class="row g-3">
             <div class="col-12 col-md-8">
                 <h6 class="mt-1">Username Information</h6>
-                <button id="send-friend-request">Send Friend Request</button>
-                <div class="user-information">
-                    <div class="row g-0">
-                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                <div class="card p-3 user-information">
+                    <div class="row g-3">
+
+                        <!-- Username | Send Friend Request -->
+                        <div class="col-6">
                             <h4>Username</h4>
-                            <div class="user-stats">
-                                <div id="game-stats">
-                                    <h6>Game Stats</h6>
-                                    <div id="playing">Playing:</div>
-                                    <div id="finished">Finished:</div>
-                                    <div id="dropped">Dropped:</div>
-                                    <div id="Reviewed">Reviewd:</div>
-                                </div>
-                                <div id="ratings">
-                                    <h6>Ratings</h6>
-                                    <div id="1-star">1 ★</div>
-                                    <div id="2-star">2 ★</div>
-                                    <div id="3-star">3 ★</div>
-                                    <div id="4-star">4 ★</div>
-                                    <div id="5-star">5 ★</div>
-                                </div>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end align-items-start">
+                            <button id="send-friend-request" class="btn btn-primary">Send Friend Request</button>
+                        </div>
+
+                        <!-- Game Stats & Ratings -->
+                        <div class="col-6 d-flex flex-column gap-3">
+                            <div id="game-stats" class="card p-2">
+                                <h6 class="mb-4">Game Stats</h6>
+                                <div class="mb-2">Playing:</div>
+                                <div class="mb-2">Finished:</div>
+                                <div class="mb-2">Dropped:</div>
+                                <div class="mb-2">Reviewed:</div>
+                            </div>
+                            <div id="ratings" class="card p-2">
+                                <h6 class="mb-4">Ratings</h6>
+                                <div class="mb-2">1 ★</div>
+                                <div class="mb-2">2 ★</div>
+                                <div class="mb-2">3 ★</div>
+                                <div class="mb-2">4 ★</div>
+                                <div class="mb-2">5 ★</div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="favorite-games">
-                                <div class="text-center p-2">
-                                    <!--- Temp images for display purposes -->
+
+                        <!-- 2x2 grid of favorite games -->
+                        <div class="col-6">
+                            <div class="row g-2">
+                                <div class="col-6">
                                     <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 1">
                                 </div>
-                                <div class="text-center p-2">
+                                <div class="col-6">
                                     <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 2">
                                 </div>
-                                <div class="text-center p-2">
+                                <div class="col-6">
                                     <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 3">
                                 </div>
-                                <div class="text-center p-2">
+                                <div class="col-6">
                                     <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 4">
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">

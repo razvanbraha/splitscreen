@@ -127,6 +127,14 @@ h6 {
     color: gold;
 }
 
+.user-information {
+    background-color: darkslategray;
+}
+
+#game-stats h6, #ratings h6 {
+  color: black;
+}
+
 .carousel-inner {
     display: flex;
     padding: 1em;
