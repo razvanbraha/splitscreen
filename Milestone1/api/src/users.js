@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router({ mergeParams: true })
 
 //Update user info
-app.put('/:userId', (req,  res) => {
+router.put('/:userId', (req,  res) => {
   res.json({message: `Updated user: ${req.params.userId} with ${req.body.username}`});
 });
 

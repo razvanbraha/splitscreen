@@ -18,5 +18,10 @@ app.get('/user', (req, res) => {
   res.sendFile(__dirname + '/templates/user-page.html');
 });
 
+app.get('/profile', (req, res) => {
+  console.log("reached");
+  res.sendFile(__dirname + '/templates/profile-page.html');
+});
+
 // As our server to listen for incoming connections
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

@@ -26,7 +26,7 @@
                 data-bs-toggle="modal" 
                 data-bs-target="#signInModal"
             >
-                Sign-In
+                Settings
             </button>
         </div>
     </nav>
@@ -34,7 +34,7 @@
     <div class="container">
         <div class="row g-3">
             <div class="col-12 col-md-8">
-                <h6 class="mt-1">Username Information</h6>
+                <h6 class="mt-1">Username</h6>
                 <div class="card p-3 user-information">
                     <div class="row g-3">
 
@@ -42,8 +42,9 @@
                         <div class="col-6" id="username-header">
                             <h4>Username</h4>
                         </div>
+
                         <div class="col-6 d-flex justify-content-end align-items-start">
-                            <button id="send-friend-request" class="btn btn-primary">Send Friend Request</button>
+                            <!--- TODO: Friends List Here -->
                         </div>
 
                         <!-- Game Stats & Ratings -->
@@ -62,24 +63,6 @@
                                 <div class="mb-2">3 ★</div>
                                 <div class="mb-2">4 ★</div>
                                 <div class="mb-2">5 ★</div>
-                            </div>
-                        </div>
-
-                        <!-- 2x2 grid of favorite games -->
-                        <div class="col-6">
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 1">
-                                </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 2">
-                                </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 3">
-                                </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 4">
-                                </div>
                             </div>
                         </div>
 
@@ -156,7 +139,7 @@
                         <div class="d-flex gap-2">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="fw-bold review-username">User 1</span>
+                                    <span class="fw-bold review-username">Username</span>
                                     <span>★★★★</span>
                                 </div>
                                 <textarea class="form-control" rows="4" readonly>This game was amazing, loved every second of it!</textarea>
@@ -169,7 +152,7 @@
                         <div class="d-flex gap-2">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="fw-bold review-username">User 1</span>
+                                    <span class="fw-bold review-username">Username</span>
                                 </div>
                                 <p class="mb-0 mt-2 text-muted">Started playing a new game!</p>
                             </div>
@@ -181,7 +164,7 @@
                         <div class="d-flex gap-2">
                             <div class="flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="fw-bold review-username">User 1</span>
+                                    <span class="fw-bold review-username">Username</span>
                                     <span>★★★★★</span>
                                 </div>
                                 <textarea class="form-control" rows="5" readonly>Absolute masterpiece, one of the best games I have ever played.</textarea>
@@ -199,7 +182,50 @@
         <div>Footer</div>
     </footer>
 
-    <template id="friendActivityTemplate">
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="signInModalLabel">Settings</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="usernameInput" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="usernameInput">
+                        </div>
+
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="contentRestrictionCheck">
+                        <label class="form-check-label" for="contentRestrictionCheck">Hide 18+ Content</label>
+                        </div>
+
+                        <!-- TODO: Style Favorite games & add remove button -->
+                        <div class="col-6">
+                            <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 1">
+                        </div>
+                        <div class="col-6">
+                            <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 2">
+                        </div>
+                        <div class="col-6">
+                            <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 3">
+                        </div>
+                        <div class="col-6">
+                            <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 4">
+                        </div>
+
+                        <div class="d-grid gap-3 mt-4">
+                            <button type="submit" class="btn btn-light btn-lg">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="UserActivityTemplate">
         <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
     </template>
 
