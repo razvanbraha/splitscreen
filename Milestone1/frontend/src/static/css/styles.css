@@ -131,6 +131,10 @@ h6 {
     background-color: darkslategray;
 }
 
+#username-header h4 {
+    color: white;
+}
+
 #game-stats h6, #ratings h6 {
   color: black;
 }
@@ -147,6 +151,10 @@ h6 {
 
 .modal-backdrop.show {
     opacity: 0.8;
+}
+
+.review-username {
+    color: blue;
 }
 
 @media screen and (min-width:576px) {

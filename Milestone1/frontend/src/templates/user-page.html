@@ -39,7 +39,7 @@
                     <div class="row g-3">
 
                         <!-- Username | Send Friend Request -->
-                        <div class="col-6">
+                        <div class="col-6" id="username-header">
                             <h4>Username</h4>
                         </div>
                         <div class="col-6 d-flex justify-content-end align-items-start">
@@ -146,10 +146,49 @@
                     </div>
                 </div>
             </div>
+            <!-- User Activity -->
             <div class="col-12 col-md-4">
                 <h6 class="mt-1">Recent Activity</h6>
-                <div class="friend-activity text-center p-2">
-                    Friend's Activity Placeholder
+                <div class="friend-activity d-flex flex-column gap-2 p-2">
+
+
+                    <div class="card p-3">
+                        <div class="d-flex gap-2">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold review-username">User 1</span>
+                                    <span>★★★★</span>
+                                </div>
+                                <textarea class="form-control" rows="4" readonly>This game was amazing, loved every second of it!</textarea>
+                            </div>
+                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <div class="card p-3">
+                        <div class="d-flex gap-2">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold review-username">User 1</span>
+                                </div>
+                                <p class="mb-0 mt-2 text-muted">Started playing a new game!</p>
+                            </div>
+                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <div class="card p-3">
+                        <div class="d-flex gap-2">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fw-bold review-username">User 1</span>
+                                    <span>★★★★★</span>
+                                </div>
+                                <textarea class="form-control" rows="5" readonly>Absolute masterpiece, one of the best games I have ever played.</textarea>
+                            </div>
+                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

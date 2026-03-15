@@ -15,7 +15,7 @@ app.get('/game', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
-  res.sendFile(__dirname + '/templates/friends-page.html');
+  res.sendFile(__dirname + '/templates/user-page.html');
 });
 
 // As our server to listen for incoming connections
