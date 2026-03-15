@@ -10,5 +10,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/templates/home-page.html');
 });
 
+app.get('/game', (req, res) => {
+  res.sendFile(__dirname + '/templates/game-page.html');
+});
+
+app.get('/user', (req, res) => {
+  res.sendFile(__dirname + '/templates/friends-page.html');
+});
+
 // As our server to listen for incoming connections
 app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));

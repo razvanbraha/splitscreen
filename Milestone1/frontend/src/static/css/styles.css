@@ -88,6 +88,45 @@ h6 {
     margin: 0 0.5em;
 }
 
+#game-details, #game-status {
+    background-color: darkslategray;
+}
+
+#game-review {
+    background-color: darkslategray;
+}
+
+#game-details h6, #game-review h5, #game-status h5{
+    color: white;
+}
+
+.form-check {
+    color: white;
+}
+
+#star-rating {
+    display: flex;
+}
+
+#star-rating input {
+    display: none;
+}
+
+#star-rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+#star-rating input:checked ~ label {
+    color: gold;
+}
+
+#star-rating label:hover,
+#star-rating label:hover ~ label {
+    color: gold;
+}
+
 .carousel-inner {
     display: flex;
     padding: 1em;

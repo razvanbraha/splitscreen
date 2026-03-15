@@ -32,13 +32,14 @@
 
     <div class="container">
         <div class="row g-3">
+
+            <!-- Left side -->
             <div class="col-12 col-md-8">
                 <h6 class="mt-1">Featured</h6>
-                <div class="featured-game ">
+                <div class="featured-game">
                     <div class="row g-0">
                         <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                             <div class="text-center p-2">
-                                <!--- Temp image for display purposes -->
                                 <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Featured Video Game Cover">
                             </div>
                         </div>
@@ -74,75 +75,86 @@
                         </div>
                     </div>
                 </div>
-                <div class="column align-items-center justify-content-center">
-                    <div id="game-details">
-                        <div id="release-date" class="details-category">
-                            <h6>Release Date:</h6>
-                        </div>
-                        <div id="developers" class="details-category">
-                            <h6>Developers:</h6>
-                        </div>
-                        <div id="publishers" class="details-category">
-                            <h6>Publishers:</h6>
-                        </div>
-                        <div id="game-modes" class="details-category">
-                            <h6>Game Modes:</h6>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="column align-items-center justify-content-center">
-                    <div id="status">
-                        <h5>Status</h5>
-                        <div class="status-and-favorite-selectors">
-                            <label for="radioPlaying">
-                                Playing
-                                <input type="radio" id="radioPlaying" name="radioStatus" value="playing">
-                            </label>
-                            <label for="radioFinished">
-                                Finished
-                                <input type="radio" id="radioFinished" name="radioStatus" value="finished">
-                            </label>
-                            <label for="radioDropped">
-                                Dropped
-                                <input type="radio" id="radioDropped" name="radioStatus" value="dropped">
-                            </label>
-                            <div id="favorite">
-                                <label for="checkboxFavorite">
-                                    Favorite
-                                    <input type="checkbox" id="checkboxFavorite" name="checkboxFavorite" value="favorite">
-                                </label>
+                <div class="row g-3 mt-1">
+
+                    <!-- Game Details & Status -->
+                    <div class="col-12 col-md-6 d-flex flex-column gap-3">
+                        <div class="card p-3" id="game-details">
+                            <h6 class="mb-4">Release Date:</h6>
+                            <h6 class="mb-4">Developers:</h6>
+                            <h6 class="mb-4">Publishers:</h6>
+                            <h6 class="mb-4">Game Modes:</h6>
+                        </div>
+                        <div class="card p-3" id="game-status">
+                            <h5 class="mb-3">Status</h5>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="radioPlaying" name="radioStatus" value="playing" required>
+                                    <label class="form-check-label" for="radioPlaying">Playing</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="radioFinished" name="radioStatus" value="finished" required>
+                                    <label class="form-check-label" for="radioFinished">Finished</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="radioDropped" name="radioStatus" value="dropped" required>
+                                    <label class="form-check-label" for="radioDropped">Dropped</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="checkboxFavorite" name="checkboxFavorite" value="favorite">
+                                    <label class="form-check-label" for="checkboxFavorite">Favorite</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="column">
-                    <div id="game-review">
-                        <form action="send" method="POST" enctype="multipart/form-data">
-                            <h5>Review GAME TITLE</h5>
-                            <div id="star-rating">
-                                <input type="radio" id="star1" name="starRating" value="1-star" required>
-                                <input type="radio" id="star2" name="starRating" value="2-star" required>
-                                <input type="radio" id="star3" name="starRating" value="3-star" reqiured>
-                                <input type="radio" id="star4" name="starRating" value="4-star" required>
-                                <input type="radio" id="star5" name="starRating" value="5-star" required>
-                            </div>
-                            <textarea name="review-message" id="review-message" rows="10" cols="50" minlength="10" placeholder="Game reivew text..." required></textarea>
-                            <button type="submit">Submit</button>
-                        </form>                        
+                    <!-- Review -->
+                    <div class="col-12 col-md-6">
+                        <div class="card p-3 h-100" id="game-review">
+                            <form action="send" method="POST" enctype="multipart/form-data">
+
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="mb-0">Review GAME TITLE</h5>
+                                    <div id="star-rating" class="d-flex gap-1">
+                                        <input type="radio" id="star1" name="starRating" value="1-star" required>
+                                        <label for="star1">★</label>
+                                        <input type="radio" id="star2" name="starRating" value="2-star" required>
+                                        <label for="star2">★</label>
+                                        <input type="radio" id="star3" name="starRating" value="3-star" required>
+                                        <label for="star3">★</label>
+                                        <input type="radio" id="star4" name="starRating" value="4-star" required>
+                                        <label for="star4">★</label>
+                                        <input type="radio" id="star5" name="starRating" value="5-star" required>
+                                        <label for="star5">★</label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center mb-3">
+                                    <textarea class="form-control" name="review-message" id="review-message" rows="10" minlength="10" placeholder="Game review text..." required></textarea>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
-                </div> 
+
+                </div>
             </div>
+
+            <!-- Right side: Friends Activity -->
             <div class="col-12 col-md-4">
                 <h6 class="mt-1">Friends' Recent Activity</h6>
                 <div class="friend-activity text-center p-2">
                     Friend's Activity Placeholder
                 </div>
             </div>
+
         </div>
     </div>
-
     <!-- TODO FINISH FOOTER -->
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
         <div>Footer</div>
