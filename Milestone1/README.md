@@ -1,6 +1,6 @@
 # Team Project: Milestone 1
 
-## [Project Title]
+## Splitscreen M1
 
 ## Progress Report
 
@@ -23,26 +23,36 @@
 
 Page    | Status | Wireframe
 ------- | ------ | ---------
-Login   | 80%    | [wireframe](link_to_wireframe)
-Profile | ✅     |
-Match   | ✅     |
-Payment | 0%     | [wireframe](link_to_wireframe)
-Tasks   | ✅     |
-Manage  | 10%    | [wireframe](link_to_wireframe)
-...     | ...    | ...
+Homepage| ✅     | 
+Login   | ✅     |
+Signup  | ✅     |
+Game    | 0%     | [wireframe](link_to_wireframe)
+Friend  | 0%     |
+User    | 0%     | [wireframe](link_to_wireframe)
+Settings| 0%     | ...
 
 
 
 ## API Documentation
 
-Method | Route                 | Description
------- | --------------------- | ---------
-`POST` | `/login`              | Receives an email and password
-`POST` | `/logout`             | Log out the current user
-`POST` | `/register`           | Creates a new user account and returns the new user object
-`GET`  | `/users`              | Retrieves an array of all active users in the system
-`GET`  | `/users/:userId`      | Retrieves a user by its Id
-...    | ...                   | ...
+Method  | Route                         | Description
+------  | ----------------------------- | ---------
+`POST`  | `/login`                      | Receives an username and password
+`POST`  | `/logout`                     | Log out the current user
+`POST`  | `/register`                   | Creates a new user account and returns the new user object
+`PUT`   | `/user`                       | Update user (username, settings, or favourite games
+`POST`  | `/reviews`                    | Create a new review
+`PUT`   | `/reviews/:reviewId`          | Update an existing review
+`GET`   | `/reviews/:reviewId`          | Retrieve a review by specific review id
+`DELETE`| `/reviews/:reviewId`          | Delete an existing review
+`GET`   | `/reviews/:gameTitle`         | Retrieves an array of all reviews for a specific game by its title
+`GET`   | `/reviews/:userId`            | Retrieves written by a specific user
+`POST`  | `/activity`                   | Create a new activity
+`GET`   | `/activity/:userId`           | Retreives activity of specific user
+`POST`  | `/friends`                    | Add a new friend
+`GET`   | `/friends/:userId`            | Retrieve all friends of a specific user
+`DELETE`| `/friends/:userId/:friendId`  | Remove a friend
+...     | ...                           | ...
 
 
 
@@ -54,28 +64,28 @@ Method | Route                 | Description
 
 ## Team Member Contributions
 
-#### [Name of Team Member 1]
+#### Riley Wickens
 
-* Contribution 1
-* Contribution 2
-* ...
+* Homepage
+* API documentation
+* 
 
-#### [Name of Team Member 2]
+#### Razvan Braha
 
-* Contribution 1
-* Contribution 2
-* ...
+* Login popup
+* Create account popup
+* API documentation
 
-#### [Name of Team Member 3]
+#### Morgan Sawyer
 
-* Contribution 1
-* Contribution 2
+* Game page
+* Friend page
 * ...
 
 #### Milestone Effort Contribution
 
 <!-- Must add to 100% -->
 
-Team Member 1 | Team Member 2 | Team Member 3
+Riley Wickens | Razvan Braha  | Morgan Sawyer
 ------------- | ------------- | --------------
 X%            | Y%            | Z%
