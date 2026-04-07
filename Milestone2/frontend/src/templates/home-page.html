@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
+    <script src="./js/home.js" type="module"></script>
+    <title>Home page</title>
+</head>
+<body>
+    <nav class="navbar sticky-top bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
+                SplitScreen
+            </a>
+            <form class="d-flex w-50" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <button 
+                class="btn btn-sm btn-outline-secondary" 
+                type="button"
+                data-bs-toggle="modal" 
+                data-bs-target="#signInModal"
+            >
+                Sign-In
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12 col-md-8">
+                <h6 class="mt-1">Featured</h6>
+                <div class="featured-game ">
+                    <div class="row g-0">
+                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                            <a href="/game">
+                                <div class="text-center p-2">
+                                    <!--- Temp image for display purposes -->
+                                    <img id="featured-game-image" src="./images/Doom.jpg" class="img-fluid rounded" alt="Featured Video Game Cover">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="featured-game-written">
+                                <div class="featured-game-title d-flex align-items-center">
+                                    <h4 id="featured-game-title">Game Title</h4>
+                                </div>
+                                <div id="featured-genres" class="featured-info">
+                                    <h6>Genres</h6>
+                                </div>
+                                <div id="featured-ratings" class="featured-info">
+                                    <div class="ratings-title">
+                                        <h6>Ratings</h6>
+                                    </div>
+                                    <div class="ratings">
+                                        <div>★ 1</div>
+                                        <div>★ 2</div>
+                                        <div>★ 3</div>
+                                        <div>★ 4</div>
+                                        <div>★ 5</div>
+                                    </div>
+                                </div>
+                                <div id="featured-info" class="featured-info">
+                                    <div id="featured-platforms">
+                                        <h6>Platforms</h6>
+                                    </div>
+                                    <div id="featured-age-ratings">
+                                        <h6>Age-Ratings</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column recent-releases">
+                        <h6 class="mt-1">Recent Releases</h6>
+                        <div id="recent-release-carousel" class="carousel slide">
+                            <div id="rr-carousel-inner" class="carousel-inner"></div>
+                            <button id="rr-carousel-control-prev" class="carousel-control-prev" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button id="rr-carousel-control-next" class="carousel-control-next" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column coming-soon">
+                        <h6 class="mt-1">Coming Soon</h6>
+                        <div id="coming-soon-carousel" class="carousel slide">
+                            <div id="cs-carousel-inner" class="carousel-inner"></div>
+                            <button id="cs-carousel-control-prev" class="carousel-control-prev" type="button">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button id="cs-carousel-control-next" class="carousel-control-next" type="button">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <h6 class="mt-1">Friends' Recent Activity</h6>
+                <div class="friend-activity text-center p-2">
+                    Sign in to see Friend Activity
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="signInModalLabel">Sign In</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="passwordInput" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordInput">
+                        </div>
+
+                        <div class="d-grid gap-3 mt-4">
+                            <!-- Temporary Link to profile, normally will reroute on succesfull login -->
+                            <button type="submit" class="btn btn-light btn-lg">Sign In</button>
+
+                            <div class="d-flex align-items-center text-secondary">
+                                <hr class="flex-grow-1 m-0">
+                                <span>Or</span>
+                                <hr class="flex-grow-1 m-0">
+                            </div>
+
+                            <button 
+                                type="button" 
+                                class="btn btn-primary btn-lg"
+                                data-bs-target="#signUpModal"
+                                data-bs-toggle="modal"
+                                data-bs-dismiss="modal"     
+                            >
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    <a href='/profile'>Temp profile link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-4">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="signUpModalLabel">Create Account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="signUpEmail" class="form-label">Email Adress</label>
+                            <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signUpUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="signUpUsername">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signUpPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signUpPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword">
+                        </div>
+
+                        <div class="d-grid gap-3 mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
+
+                            <button
+                                type="button"
+                                class="btn btn-light btn-lg"
+                                data-bs-target="#signInModal"
+                                data-bs-toggle="modal"
+                                data-bs-dismiss="modal"
+                            >
+                                Back to Sign In
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO FINISH FOOTER -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
+        <div>Footer</div>
+    </footer>
+
+    <template id="friendActivityTemplate">
+        <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
+    </template>
+
+
+    <template id="videogameLesserFeatureTemplate">
+        <div class="carousel-item">
+            <div class="card border-0">
+                <div class="game-img-wrapper">
+                    <a id="card-link">
+                        <img class="card-img-top" src="" alt=""/>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</body>
+</html>
