@@ -17,7 +17,6 @@
 * Search Functionality
 * User Settings & profile data display
 * Favorite Games frontend
-* 
 
 
 ### Page Implementation Progress
@@ -66,13 +65,6 @@ Method  | Route                         | Description
 
 ## Database ER Diagram
 
-```markdown
-
-Use this syntax to embed an image in your markdown file:
-
-![](images/erd.png)
-
-```
 ![](Database_Design/Final-DB-ER.png)
 
 
