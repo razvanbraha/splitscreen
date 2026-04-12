@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
-const reviewDAO = require('../ReviewDAO');
+const reviewDAO = require('../db/ReviewDAO');
 
 router.use(express.json());
 

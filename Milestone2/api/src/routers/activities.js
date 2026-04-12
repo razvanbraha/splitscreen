@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
-const activityDAO = require('../ActivityDAO');
+const activityDAO = require('../db/ActivityDAO');
 
 
 //Create new activity
