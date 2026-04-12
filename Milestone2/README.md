@@ -51,7 +51,8 @@ Method  | Route                         | Description
 `GET`   | `/reviews/user/:userId`       | Get all reviews posted by a user
 `GET`   | `/reviews/game/:gameId`       | Get all reviews for a game
 `DELETE`| `/reviews/:reviewId/`         | Delete specific review
-`POST`  | `/activities/:reviewId/`      | Create New Activity
+`POST`  | `/activities/`                | Create New Activity
+`PUT`   | `/activities/:activityId/`    | Update an existing Activity
 `GET   `| `/activities/:userId/`        | Get activities by user
 `POST`  | `/friends/`                   | Add a new friend
 `GET`   | `/friends/:userId`            | Get a user's friends
@@ -72,7 +73,7 @@ Use this syntax to embed an image in your markdown file:
 ![](images/erd.png)
 
 ```
-![](Database_Design/Splitscreen_db_relationship_diagram.pdf)
+![](Database_Design/Final-DB-ER.png)
 
 
 ## Team Member Contributions
