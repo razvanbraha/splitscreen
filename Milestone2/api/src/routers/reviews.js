@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
-const reviewsDAO = require('../ReviewsDAO');
+const reviewDAO = require('../ReviewDAO');
 
 router.use(express.json());
 
@@ -8,7 +8,7 @@ router.use(express.json());
 router.post('/', async (req, res) => {
     const { userId, gameId, score, reviewMessage } = req.body;
 
-    reviewsDAO.createReview(userId, gameId, score, reviewMessage)
+    reviewDAO.createReview(userId, gameId, score, reviewMessage)
         .then(review => res.status(201).json(review))
         .catch(err => res.status(err.code || 500).json({ error: err.message }));
 });
@@ -18,7 +18,7 @@ router.put('/:reviewId', (req,  res) => {
     const { reviewId } = req.params;
     const { userId, score, reviewMessage } = req.body;
 
-    reviewsDAO.update(reviewId, userId, score, reviewMessage)
+    reviewDAO.update(reviewId, userId, score, reviewMessage)
         .then(() => res.json({ message: `Review ${reviewId} updated.` }))
         .catch(err => res.status(err.code || 500).json({ error: err.message }));
 });

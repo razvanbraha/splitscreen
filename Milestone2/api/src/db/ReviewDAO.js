@@ -14,10 +14,12 @@ module.exports = {
                 reject({ code: 400, message: "score must be between 1 and " });
             }
 
+            const createdDate = new Date();
+
             return db.query(
-                `INSERT INTO review (rvw_usr_id, rvw_gme_id, rvw_rating, rvw_text, rvw_created_at)
+                `INSERT INTO review (rev_usr_id, rev_gam_id, rev_score, rev_message, rev_created_at)
                 VALUES (?, ?, ?, ?, ?)`,
-                [userId, gameId, rating, reviewText, createdDate]
+                [userId, gameId, score, reviewMessage, createdDate]
             ).then(rows => {
                 if (!rows[0]) {
                     reject({ code: 500, message: "Error: Review could not be created" });
@@ -36,16 +38,18 @@ module.exports = {
     },
 
     // PUT existing review
-    updateReview: (reviewId, userId, score, reviewMessage) => {
+    updateReview: (reviewId, score, reviewMessage) => {
         return new Promise((resolve, reject) => {
             if (score && (score < 1 || score > 5)) {
                 reject({ code: 400, message: "score must be between 1 and 5" });
             }
 
+            const updatedDate = new Date();
+
             return db.query(
-                `UPDATE review SET rvw_rating = ?, rvw_text = ?, rvw_updated_at = ?
-                WHERE rvw_id = ? AND rvw_usr_id = ?`,
-                [rating, reviewText, updatedDate, reviewId, userId]
+                `UPDATE review SET rev_score = ?, rev_message = ?, rev_updated_at = ?
+                WHERE rev_id = ? AND rev_usr_id = ?`,
+                [score, reviewMessage, updatedDate, reviewId, userId]
             ).then(result => {
                 if (result.affectedRows === 0) {
                     reject({ code: 404, message: "Review not found or unauthorized" });
@@ -100,7 +104,7 @@ module.exports = {
         });
     },
 
-    // DELETE - Remove a review
+    // DELETE a review
     deleteReview: (reviewId, userId) => {
         return db.query(
             `DELETE FROM review WHERE rev_id = ? AND rev_usr_id = ?`,
