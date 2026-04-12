@@ -18,6 +18,9 @@
 * User Settings & profile data display
 * Favorite Games frontend
 
+### Authorization Practices 
+User's are able to access some features like seeing games and statistics but are locked out of creating reviews, activities, favoriting games, and adding friends without an account. User's can create an account from any page that doesn't require authorization. The accounts are stored within the db including an id, username, hashed password, password salt, full name, and any content settings. Users who have an account are able to login by entering their username and password which will provide them with a token to prove auth. Auth  is checked in two ways a lax and a strict way depending on the content accessed. Lax will allow user's to continue on the page but with limited content but strict will remove them from the page entirely. 
+
 
 ### Page Implementation Progress
 
