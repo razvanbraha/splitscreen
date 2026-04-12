@@ -50,15 +50,13 @@ module.exports = {
             }
             // if no user with provided username
             return new Error("No such user");
-    });
+        });
     },
 
     getSpecificUser: (username) => {
-        console.log("HERE TOO");
         return db.query('SELECT * FROM user WHERE usr_username=?', [username]).then(rows => {
             if (rows.length === 1) { // we found our user
                 const user = new User(rows[0]);
-                //console.log(user);
                 return user;
             }
             return new Error("No such user");
@@ -66,8 +64,8 @@ module.exports = {
     },
 
     addFavoriteGame: (userId, gameId) => {
-        return db.query('SELECT COUNT(*) FROM user_game WHERE urg_usr_id=?', [userId]).then(count => {
-            if (count >= 4) {
+        return db.query('SELECT COUNT(*) AS total FROM user_game WHERE urg_usr_id=?', [userId]).then(count => {
+            if (count[0].total >= 4n) {
                 console.log("Error: Favorite game limit reached");
                 return new Error("Favorite game limit reached");
             }

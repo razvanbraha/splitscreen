@@ -8,8 +8,10 @@ function processJSONResponse(res) {
 };
 
 function handleError(err) {
-  console.error('Error in fetch', err);
-  throw err;
+  if (err.status != 401) {
+    console.error('Error in fetch', err);
+    throw err;
+  }
 };
 
 export default {

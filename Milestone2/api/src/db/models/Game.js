@@ -10,4 +10,13 @@ module.exports = class Game {
     this.name = data.gme_name;
     this.image = data.gme_image;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      slug: this.slug,
+      name: this.name,
+      image: this.image,
+    }
+  }
 };

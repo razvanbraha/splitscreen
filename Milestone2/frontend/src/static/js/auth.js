@@ -15,7 +15,7 @@ function displayUserInHeader(user) {
     logOut();
   })
 
-  const header = document.getElementById('nav-buttons');
+  const header = document.getElementById('header');
   document.getElementById('sign-in-button').remove();
   header.appendChild(profileLink);
   header.appendChild(logoutLink);
@@ -27,8 +27,10 @@ function logOut() {
   });
 }
 
-api.getCurrentUser().then(user => {
-  displayUserInHeader(user);
+api.getCurrentUser().then(user => { 
+  if (user) {
+      displayUserInHeader(user);
+  }
 })
 .catch(error => {
   if(error.status === 401) {
