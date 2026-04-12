@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="./css/styles.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
     <script src="./js/home.js" type="module"></script>
+    <script src="./js/login.js" type="module"></script>
+    <script src="./js/newUser.js" type="module"></script>
+    <script src="./js/auth.js" type="module"></script>
     <title>Home page</title>
 </head>
 <body>
     <nav class="navbar sticky-top bg-body-tertiary" data-bs-theme="dark">
-        <div class="container-fluid">
+        <div id="header" class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
                 SplitScreen
@@ -20,14 +23,17 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <button 
-                class="btn btn-sm btn-outline-secondary" 
-                type="button"
-                data-bs-toggle="modal" 
-                data-bs-target="#signInModal"
-            >
-                Sign-In
-            </button>
+            <div id="nav-buttons" class="d-flex gap-3">
+                <button 
+                    class="btn btn-sm btn-outline-secondary"
+                    id="sign-in-button"
+                    type="button"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#signInModal"
+                >
+                    Sign-In
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -128,15 +134,16 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <div id="sign-in-errorbox" class="hidden"></div>
+                    <form id="sign-in-form">
                         <div class="mb-3">
-                            <label for="emailInput" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                            <label for="sign-in-username" class="form-label">Username</label>
+                            <input id="sign-in-username" type="text" class="form-control" required>
                         </div>
 
                         <div class="mb-5">
-                            <label for="passwordInput" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="passwordInput">
+                            <label for="sign-in-password" class="form-label">Password</label>
+                            <input id="sign-in-password" type="password" class="form-control" required>
                         </div>
 
                         <div class="d-grid gap-3 mt-4">
@@ -173,27 +180,37 @@
                     <h1 class="modal-title fs-5" id="signUpModalLabel">Create Account</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
+                <div id="create-account-errorbox" class="hidden"></div>
                 <div class="modal-body">
-                    <form>
+                    <form id="create-account-form">
                         <div class="mb-3">
-                            <label for="signUpEmail" class="form-label">Email Adress</label>
-                            <input type="email" class="form-control" id="signUpEmail" placeholder="name@example.com">
+                            <label for="sign-up-username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="sign-up-username" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="signUpUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="signUpUsername">
+                            <label for="sign-up-password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="sign-up-password" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="signUpPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="signUpPassword">
+                            <label for="sign-up-confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="sign-up-confirm-password" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword">
+                            <label for="sign-up-first-name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="sign-up-first-name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sign-up-last-name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="sign-up-last-name" required>
+                        </div>
+
+                        <div class="mb-3 form-check form-switch">
+                            <input id="innappropriate-content-switch" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" aria-checked="false">
+                            <label for="innappropriate-content-switch" class="form-check-label" for="flexSwitchCheckDefault">Allow Inappropriate Content</label>
                         </div>
 
                         <div class="d-grid gap-3 mt-5">

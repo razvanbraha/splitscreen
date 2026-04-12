@@ -2,15 +2,12 @@ import HTTPClient from './HTTPClient.js';
 
 const BASE_API_PATH = './api';
 
-/* 
 const handleAuthError = (error) => {
   if(error.status === 401) {
-    document.location = './login';
+    console.log("No Authorization.");
   }
   throw error;
 };
-
-*/
 
 const getFeaturedGame = () => {
   return HTTPClient.get(`${BASE_API_PATH}/games/featured`)
@@ -56,18 +53,18 @@ const getVisitedParks = () => {
 
 
 
-
+*/
 
 const logIn = (username, password) => {
   const data = {
     username: username,
     password: password
   };
-  return HTTPClient.post(`${BASE_API_PATH}/users/login`, data);
+  return HTTPClient.post(`${BASE_API_PATH}/login`, data);
 };
 
 const logOut = () => {
-  return HTTPClient.post(`${BASE_API_PATH}/users/logout`, {});
+  return HTTPClient.post(`${BASE_API_PATH}/logout`, {});
 };
 
 const getCurrentUser = () => {
@@ -75,10 +72,23 @@ const getCurrentUser = () => {
   .catch(handleAuthError);
 };
 
-*/
+const createUser = (firstName, lastName, username, password, innappropriateContent) => {
+  const data = {
+    firstname: firstName,
+    lastname: lastName,
+    username: username,
+    password: password,
+    innappropriateContent: innappropriateContent
+  };
+  return HTTPClient.post(`${BASE_API_PATH}/register`, data)
+};
 
 export default {
   getFeaturedGame,
   getRecentGames,
   getAnticipatedGames,
+  logIn,
+  logOut,
+  getCurrentUser,
+  createUser,
 };
