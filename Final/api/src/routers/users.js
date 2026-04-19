@@ -19,7 +19,6 @@ router.get('/current', TokenMiddleware, (req,  res) => {
 
 //Get a specific user
 router.get('/:userId', TokenMiddleware, (req,  res) => {
-  console.log("USER HERE");
   if(req.params.userId) {
     UserDAO.getSpecificUser(req.body.username).then(user => {
       res.json({user: user});

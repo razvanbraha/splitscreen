@@ -21,21 +21,53 @@ module.exports = {
         for (const genre of unprocessedGame.genres) {
             game.addGenre(genre.name);
         }
+
+        if (game.genres.length === 0) {
+            game.addGenre('Unassigned');
+        }
+
         for (const platform of unprocessedGame.platforms) {
             game.addPlatform(platform.platform.name);
         }
+
+        if (game.platforms.length === 0) {
+            game.addPlatform('Unassigned');
+        }
+
         for (const rating of unprocessedGame.ratings) {
            game.addRating(rating.count);
         }
         while (game.ratings.length < 5) {
             game.addRating(0);
         }
-        for (let i = 0; i < Math.min(unprocessedGame.tags.length, 15); i++) {
-            game.addTag(unprocessedGame.tags[i].name);
+
+        if (unprocessedGame.tags) {
+            for (let i = 0; i < Math.min(unprocessedGame.tags.length, 15); i++) {
+                game.addTag(unprocessedGame.tags[i].name);
+            }
+        } else {
+            game.addTag('unassigned');
         }
         
         game.setReleaseDate(unprocessedGame.released);
-        game.setAgeRating(unprocessedGame.esrb_rating.name);
+        if (unprocessedGame.esrb_rating) {
+            game.setAgeRating(unprocessedGame.esrb_rating.name);
+        } else {
+            game.setAgeRating('Unrated');
+        }
+
+        if (unprocessedGame.publishers) {
+            for (const publisher of unprocessedGame.publishers) {
+                game.addPublisher(publisher.name);
+            }
+        }
+
+        if (unprocessedGame.developers) {
+            for (const developer of unprocessedGame.developers) {
+                game.addDeveloper(developer.name);
+            }
+        }
+        
     },
 
     checkGameExists: (slug) => {

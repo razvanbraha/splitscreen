@@ -70,6 +70,11 @@ const getCurrentUserStrict = () => {
   .catch(handleStrictAuthError);
 };
 
+const getUser = (userId) => {
+  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}`)
+  .catch(handleStrictAuthError);
+};
+
 export default {
   getFeaturedGame,
   getRecentGames,
@@ -81,4 +86,5 @@ export default {
   getCurrentUser,
   getCurrentUserStrict,
   createUser,
+  getUser,
 };

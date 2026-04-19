@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/styles.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
     <script src="./js/home.js" type="module"></script>
+    <script src="./js/search.js" type="module"></script>
     <script src="./js/login.js" type="module"></script>
     <script src="./js/newUser.js" type="module"></script>
     <script src="./js/auth.js" type="module"></script>
@@ -19,8 +20,8 @@
                 <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
                 SplitScreen
             </a>
-            <form class="d-flex w-50" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <form id="search-bar" class="d-flex w-50" role="search">
+                <input id="search-input" class="form-control me-2" type="search" placeholder="#game or @user" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div id="nav-buttons" class="d-flex gap-1">
@@ -77,8 +78,8 @@
                                         <h6>Platforms</h6>
                                         <div id="platforms-list"></div>
                                     </div>
-                                    <div id="featured-age-ratings">
-                                        <h6 id="age-rating">Age-Rating: </h6>
+                                    <div id="release-date-container">
+                                        <h6 class="release-date">Release Date:</h6>
                                     </div>
                                 </div>
                             </div>
