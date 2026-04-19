@@ -8,10 +8,25 @@ const featuredGame = document.querySelector('.featured-game');
 const carouselEntryTemplate = document.querySelector('#videogameLesserFeatureTemplate');
 
 api.getFeaturedGame().then(game => {
+    console.log(game);
     featuredGame.querySelector('#featured-game-link').href=`/game?id=${game.id}`;
     featuredGame.querySelector('#featured-game-image').src=game.image;
     featuredGame.querySelector('#featured-game-image').alt=`${game.name} cover photo`;
     featuredGame.querySelector('#featured-game-title').innerText = game.name;
+    featuredGame.querySelector('#age-rating').innerText += ` ${game.age_rating}`;
+
+    let genresList = featuredGame.querySelector('#genres-list');
+    for (const element of game.genres) {
+        genresList.innerHTML += `<div class='genre'>${element}</div>`;
+    }
+
+    let platformsList = featuredGame.querySelector('#platforms-list');
+    for (const element of game.platforms) {
+        platformsList.innerHTML += `<div class='platform'>${element}</div>`;
+    }
+    for (let i = 5; i > 0; i--) {
+        featuredGame.querySelector(`#star-${i}`).innerText += ` ${game.ratings[5 - i]}`;
+    }
 });
 
 api.getRecentGames().then(games => {

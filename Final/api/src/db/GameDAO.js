@@ -17,6 +17,27 @@ module.exports = {
         })
     },
 
+    fillGameContent: async (unprocessedGame, game) => {
+        for (const genre of unprocessedGame.genres) {
+            game.addGenre(genre.name);
+        }
+        for (const platform of unprocessedGame.platforms) {
+            game.addPlatform(platform.platform.name);
+        }
+        for (const rating of unprocessedGame.ratings) {
+           game.addRating(rating.count);
+        }
+        while (game.ratings.length < 5) {
+            game.addRating(0);
+        }
+        for (let i = 0; i < Math.min(unprocessedGame.tags.length, 15); i++) {
+            game.addTag(unprocessedGame.tags[i].name);
+        }
+        
+        game.setReleaseDate(unprocessedGame.released);
+        game.setAgeRating(unprocessedGame.esrb_rating.name);
+    },
+
     checkGameExists: (slug) => {
         return db.query('SELECT COUNT(*) AS total FROM game WHERE gme_slug=?', [slug]).then(count => {
             return count[0].total === 1n;

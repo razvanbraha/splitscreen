@@ -43,10 +43,22 @@ h6 {
     grid-row:2;
 }
 
+#genres-list {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ gap: 5px;
+}
+
+.platform, .genre {
+    background-color: rgb(151, 151, 151);
+    padding: 2px;
+    border-radius: 5px;
+}
+
 #featured-ratings {
     grid-row:3;
 }
-
 
 .ratings-title {
     height: 10%;
@@ -67,6 +79,13 @@ h6 {
 
 #featured-platforms {
     height: 100%
+}
+
+#platforms-list {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ gap: 5px;
 }
 
 #featured-age-ratings {

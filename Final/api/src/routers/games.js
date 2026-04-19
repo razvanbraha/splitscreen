@@ -7,7 +7,6 @@ router.use(cookieParser());
 router.use(express.json());
 
 //Title, Pictue, Genres, Ratings, Platforms, Age_ratings, release date, developers, publishers, gamemodes
-//TODO: For milestone 2 this api is fine but for the information we want this api is subpar, I will look into alternatives in the meantime
 
 router.get('/featured', async (req, res) => {
     if (!process.env?.RAWG_API_KEY) {
@@ -30,15 +29,14 @@ router.get('/featured', async (req, res) => {
     .then(response => response.json())
     .then(async data => {
         let game_data = data.results[0];
-        console.log(game_data);
-        console.log(game_data.platforms);
-
         let game;
         if(await GameDAO.checkGameExists(data.results[0].slug)) {
             game = await GameDAO.getGameBySlug(data.results[0].slug);
         } else {
             game = await GameDAO.createNewGame(data.results[0]);
         }
+        GameDAO.fillGameContent(game_data, game);
+        console.log(game);
         res.json(game);
     }).catch(error => {
         console.log('Error:', error);
