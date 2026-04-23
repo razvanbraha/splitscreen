@@ -2,19 +2,11 @@ import HTTPClient from './HTTPClient.js';
 
 const BASE_API_PATH = './api';
 
-const handleStrictAuthError = (error) => {
+const handleAuthError = (error) => {
   if(error.status === 401) {
-    console.log("No Authorization.");
-    document.location('./');
+    globalThis.location.href = '/';
   }
   throw error;
-};
-
-const handleLenientAuthError = (error) => {
-  if(error.status === 401) {
-    console.log("No Authorization.");
-  }
-  return null;
 };
 
 const getFeaturedGame = () => {
@@ -62,17 +54,12 @@ const createUser = (firstName, lastName, username, password, innappropriateConte
 
 const getCurrentUser = () => {
   return HTTPClient.get(`${BASE_API_PATH}/users/current`)
-  .catch(handleLenientAuthError);
-};
-
-const getCurrentUserStrict = () => {
-  return HTTPClient.get(`${BASE_API_PATH}/users/current`)
-  .catch(handleStrictAuthError);
+  .catch(handleAuthError);
 };
 
 const getUser = (userId) => {
   return HTTPClient.get(`${BASE_API_PATH}/users/${userId}`)
-  .catch(handleStrictAuthError);
+  .catch(handleAuthError);
 };
 
 export default {
@@ -84,7 +71,6 @@ export default {
   logIn,
   logOut,
   getCurrentUser,
-  getCurrentUserStrict,
   createUser,
   getUser,
 };

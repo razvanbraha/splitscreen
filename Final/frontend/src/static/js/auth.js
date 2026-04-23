@@ -15,15 +15,14 @@ function displayUserInHeader(user) {
     logOut();
   })
 
-  const header = document.getElementById('header');
-  document.getElementById('sign-in-button').remove();
-  header.appendChild(profileLink);
-  header.appendChild(logoutLink);
+  const buttonContainer = document.getElementById('nav-buttons');
+  buttonContainer.appendChild(profileLink);
+  buttonContainer.appendChild(logoutLink);
 }
 
 function logOut() {
   api.logOut().then(() => {
-    document.location = "./";
+    document.location = "/";
   });
 }
 
@@ -33,10 +32,5 @@ api.getCurrentUser().then(user => {
   }
 })
 .catch(error => {
-  if(error.status === 401) {
-    console.log("We are not logged in");
-  }
-  else {
     console.log(`${error.status}`, error);
-  }
 });

@@ -22,7 +22,7 @@ module.exports = {
             game.addGenre(genre.name);
         }
 
-        if (game.genres.length === 0) {
+        if (game.genres?.length <= 0) {
             game.addGenre('Unassigned');
         }
 
@@ -30,15 +30,17 @@ module.exports = {
             game.addPlatform(platform.platform.name);
         }
 
-        if (game.platforms.length === 0) {
+        if (game.platforms?.length <= 0) {
             game.addPlatform('Unassigned');
         }
 
         for (const rating of unprocessedGame.ratings) {
            game.addRating(rating.count);
         }
-        while (game.ratings.length < 5) {
-            game.addRating(0);
+        if (game.ratings) {
+            while (game.ratings.length < 5) {
+                game.addRating(0);
+            }
         }
 
         if (unprocessedGame.tags) {

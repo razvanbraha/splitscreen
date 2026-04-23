@@ -20,7 +20,7 @@ loginForm.addEventListener('submit', e => {
   errorBox.classList.add("hidden");
 
   api.logIn(username.value, password.value).then(() => {
-    document.location = "./";
+    document.location = "/auth";
     const myModal = new bootstrap.Modal('#signInModal');
     myModal.hide();
   }).catch((error) => {

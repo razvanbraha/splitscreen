@@ -10,7 +10,6 @@ module.exports = class User {
   #salt = null;;
 
   constructor(data) {
-    console.log(data);
     this.id = data.usr_id;
     this.first_name = data.usr_first_name;
     this.last_name = data.usr_last_name;

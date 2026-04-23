@@ -6,14 +6,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
-    <script src="./js/carousel.js" defer></script>
     <script src="./js/profile.js" type="module"></script>
     <title>Friends page</title>
 </head>
 <body>
     <nav class="navbar sticky-top bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="/auth">
                 <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
                 SplitScreen
             </a>
@@ -71,7 +70,7 @@
                 </div>
                 <div class="row">
                     <div class="column recent-releases">
-                        <h6 class="mt-1">Finished Games</h6>
+                        <h6 class="mt-1">Favorite Games</h6>
                         <div id="recent-release-carousel" class="carousel slide">
                             <div id="rr-carousel-inner" class="carousel-inner">
                                 <div class="carousel-item active">
@@ -103,29 +102,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <button id="rr-carousel-control-prev" class="carousel-control-prev" type="button">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button id="rr-carousel-control-next" class="carousel-control-next" type="button">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
                 </div>

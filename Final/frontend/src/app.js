@@ -10,8 +10,16 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/templates/home-page.html');
 });
 
+app.get('/auth', (req, res) => {
+  res.sendFile(__dirname + '/templates/home-page-auth.html');
+});
+
 app.get('/game', (req, res) => {
   res.sendFile(__dirname + '/templates/game-page.html');
+});
+
+app.get('/gameauth', (req, res) => {
+  res.sendFile(__dirname + '/templates/game-page-auth.html');
 });
 
 app.get('/user', (req, res) => {
@@ -19,7 +27,6 @@ app.get('/user', (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-  console.log("reached");
   res.sendFile(__dirname + '/templates/profile-page.html');
 });
 

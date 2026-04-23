@@ -15,6 +15,15 @@ router.get('/featured', async (req, res) => {
         return;
     }
 
+    getFeatured().then(game => {
+        res.json(game);  
+    }).catch(err => {
+        console.log(err);
+        res.status(err.code || 500).json({ error: err.message });
+    })
+});
+
+let getFeatured = async () => {
     const d = new Date();
     const formattedPastDate = (d.getMonth() === 0 ? d.getFullYear() - 1 : d.getFullYear()) + '-' + (d.getMonth() === 0 ? 12 : d.getMonth()).toString().padStart(2, '0') + '-' + d.getDate().toString().padStart(2, '0');
     const formattedDate = d.getFullYear() + '-' + (d.getMonth() + 1).toString().padStart(2, '0') + '-' + d.getDate().toString().padStart(2, '0');
@@ -30,23 +39,23 @@ router.get('/featured', async (req, res) => {
 
     const index = Math.floor(Math.random() * 20);
 
-    fetch(`https://api.rawg.io/api/games?${params}`)
-    .then(response => response.json())
-    .then(async data => {
-        let game_data = data.results[index];
-        let game;
-        if(await GameDAO.checkGameExists(data.results[index].slug)) {
-            game = await GameDAO.getGameBySlug(data.results[index].slug);
-        } else {
-            game = await GameDAO.createNewGame(data.results[index]);
-        }
-        GameDAO.fillGameContent(game_data, game);
-        res.json(game);
-    }).catch(error => {
-        console.log('Error:', error);
-        res.status(500).json({ error: 'Failed to fetch' });
-    })
-});
+    const response = await fetch(`https://api.rawg.io/api/games?${params}`)
+    const data = await response.json();
+    let game_data = data.results[index];
+
+    if (!game_data.name || !game_data.slug || !game_data.background_image) {
+        return getFeatured();
+    }
+
+    let game;
+    if(await GameDAO.checkGameExists(data.results[index].slug)) {
+        game = await GameDAO.getGameBySlug(data.results[index].slug);
+    } else {
+        game = await GameDAO.createNewGame(data.results[index]);
+    }
+    await GameDAO.fillGameContent(game_data, game);
+    return game;
+}
 
 router.get('/recent', async (req, res) => {
     if (!process.env?.RAWG_API_KEY) {
@@ -135,7 +144,7 @@ router.get('/id/:gameId', async (req, res) => {
     .then(response => response.json())
     .then(async data => {
         let game_data = data;
-        GameDAO.fillGameContent(game_data, game);
+        await GameDAO.fillGameContent(game_data, game);
         res.json(game);
     }).catch(error => {
         console.log('Error:', error);
