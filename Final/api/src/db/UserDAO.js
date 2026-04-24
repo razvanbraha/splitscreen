@@ -53,8 +53,9 @@ module.exports = {
         });
     },
 
-    getSpecificUser: (username) => {
-        return db.query('SELECT * FROM user WHERE usr_username=?', [username]).then(rows => {
+    //TODO: NEEDS TESTING
+    getSpecificUser: (userId) => {
+        return db.query('SELECT * FROM user WHERE usr_id=?', [userId]).then(rows => {
             if (rows.length === 1) { // we found our user
                 const user = new User(rows[0]);
                 return user;
@@ -66,13 +67,15 @@ module.exports = {
     addFavoriteGame: (userId, gameId) => {
         return db.query('SELECT COUNT(*) AS total FROM user_game WHERE urg_usr_id=?', [userId]).then(count => {
             if (count[0].total >= 4n) {
-                console.log("Error: Favorite game limit reached");
-                return new Error("Favorite game limit reached");
+                console.log("Favorite game limit reached");
+                return false;
             }
-        }).then(() => {
+            return true;
+        }).then((state) => {
+            if (!state) return false;
+
             return db.query('INSERT INTO user_game (urg_usr_id, urg_gme_id) VALUES (?, ?)',
               [userId, gameId]).then(result => {
-                console.log(result);
                 return result.affectedRows > 0;;
             });
         })
@@ -80,14 +83,12 @@ module.exports = {
 
     removeFavoriteGame:  (userId, gameId) => {
         return db.query('DELETE FROM user_game WHERE urg_usr_id = ? AND urg_gme_id = ?', [userId, gameId]).then(result => {
-            console.log(result);
             return result.affectedRows > 0;;
         });
     },
 
     getUserFavoriteGameIds: (userId) => {
         return db.query('SELECT urg_gme_id FROM user_game WHERE urg_usr_id = ?', [userId]).then(rows => {
-            console.log(rows);
             return rows.map(row => row.urg_gme_id);
         });
     },

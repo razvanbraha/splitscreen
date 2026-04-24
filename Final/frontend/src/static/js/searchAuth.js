@@ -12,6 +12,9 @@ searchForm.addEventListener('submit', event => {
     else if (searchInput.value?.startsWith('#')) {
         gameSearch(searchInput.value.slice(1));
     }
+    else if (searchInput.value?.startsWith('@')) {
+        userSearch(searchInput.value.slice(1));
+    }
     else {
         alert('Unrecognized Input.');
         searchInput.value = '';
@@ -26,10 +29,20 @@ let gameSearch = async (search) => {
     api.getGameByName(search)
     .then(game => {
         console.log(game);
-        globalThis.location.href = `/game?id=${game.id}`;
+        globalThis.location.href = `/gameauth?id=${game.id}`;
     }).catch(err => {
         console.log(err);
         alert('Unable to find game.');
+        searchInput.value = '';
+    })
+}
+
+let userSearch = (search) => {
+    api.getUser(search)
+    .then(user => {
+        globalThis.location.href = `./user?id=${user.id}`;
+    }).catch(err => {
+        alert('Unable to find user.');
         searchInput.value = '';
     })
 }

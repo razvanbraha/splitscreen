@@ -62,6 +62,21 @@ const getUser = (userId) => {
   .catch(handleAuthError);
 };
 
+const getUserFavoriteGames = (userId) => {
+  return HTTPClient.get(`${BASE_API_PATH}/users/favorite/${userId}`)
+  .catch(handleAuthError);
+};
+
+const addUserFavoriteGame = (gameId) => {
+  return HTTPClient.post(`${BASE_API_PATH}/users/favorite/${gameId}`)
+  .catch(handleAuthError);
+}
+
+const removeUserFavoriteGame = (gameId) => {
+  return HTTPClient.delete(`${BASE_API_PATH}/users/favorite/${gameId}`)
+  .catch(handleAuthError);
+}
+
 export default {
   getFeaturedGame,
   getRecentGames,
@@ -73,4 +88,7 @@ export default {
   getCurrentUser,
   createUser,
   getUser,
+  getUserFavoriteGames,
+  addUserFavoriteGame,
+  removeUserFavoriteGame,
 };

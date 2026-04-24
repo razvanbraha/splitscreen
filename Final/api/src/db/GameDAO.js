@@ -18,26 +18,31 @@ module.exports = {
     },
 
     fillGameContent: async (unprocessedGame, game) => {
-        for (const genre of unprocessedGame.genres) {
-            game.addGenre(genre.name);
+
+        if (unprocessedGame.genres) {
+            for (const genre of unprocessedGame.genres) {
+                game.addGenre(genre.name);
+            }
         }
 
         if (game.genres?.length <= 0) {
             game.addGenre('Unassigned');
         }
 
-        for (const platform of unprocessedGame.platforms) {
-            game.addPlatform(platform.platform.name);
+        if (unprocessedGame.platforms) {
+            for (const platform of unprocessedGame.platforms) {
+                game.addPlatform(platform.platform.name);
+            }
         }
 
         if (game.platforms?.length <= 0) {
             game.addPlatform('Unassigned');
         }
 
-        for (const rating of unprocessedGame.ratings) {
-           game.addRating(rating.count);
-        }
-        if (game.ratings) {
+        if (unprocessedGame.ratings) {
+            for (const rating of unprocessedGame.ratings) {
+                game.addRating(rating.count);
+            }
             while (game.ratings.length < 5) {
                 game.addRating(0);
             }
