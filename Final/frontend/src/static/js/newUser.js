@@ -34,7 +34,7 @@ createUserForm.addEventListener('submit', e => {
   }
 
   api.createUser(firstName.value, lastName.value, username.value, password.value, innappropriateContent.value).then(userData => {
-    document.location = "./";
+    document.location = "/auth";
     const myModal = new bootstrap.Modal('#signUpModal');
     myModal.hide();
   }).catch((error) => {

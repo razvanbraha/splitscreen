@@ -20,10 +20,11 @@ router.get('/current', TokenMiddleware, (req,  res) => {
 });
 
 //Get a specific user
-router.get('/:userId', TokenMiddleware, (req,  res) => {
+router.get('/id/:userId', TokenMiddleware, (req,  res) => {
   if(req.params.userId) {
     UserDAO.getSpecificUser(req.params.userId).then(user => {
-      res.json({user: user});
+      console.log(user);
+      res.json(user);
     }).catch(err => {
       res.status(err.code || 500).json({error: err.message});
     });
@@ -33,17 +34,12 @@ router.get('/:userId', TokenMiddleware, (req,  res) => {
   }
 });
 
-
-//Get a specific user's favorite games
-router.get('/favorite/:userId', TokenMiddleware, (req,  res) => {
-  if(req.params.userId) {
-    UserDAO.getUserFavoriteGameIds(req.params.userId).then( async gameIds => {
-      let games = [];
-      for (let gameId of gameIds) {
-        let game = await GameDAO.getGameById(gameId);
-        if (game) games.push(game);
-      }
-      res.send(games);
+//Search for a user with a given username
+router.get('/name/:username', TokenMiddleware, (req,  res) => {
+  if(req.params.username) {
+    UserDAO.searchForUser(req.params.username).then(user => {
+      console.log(user);
+      res.json({id: user.id});
     }).catch(err => {
       res.status(err.code || 500).json({error: err.message});
     });
@@ -52,35 +48,5 @@ router.get('/favorite/:userId', TokenMiddleware, (req,  res) => {
     res.status(400).json({error: 'Credentials not provided'});
   }
 });
-
-//Favorite a game
-router.post('/favorite/:gameId', TokenMiddleware, (req,  res) => {
-  if(req.user && req.params.gameId) {
-    UserDAO.addFavoriteGame(req.user.id, req.params.gameId).then(status => {
-        res.json({status: status});
-    }).catch(err => {
-      res.status(err.code || 500).json({error: err.message});
-    });
-  }
-  else {
-    res.status(400).json({error: 'Credentials not provided'});
-  }
-});
-
-//Delete a favorite game
-router.delete('/favorite/:gameId', TokenMiddleware, (req,  res) => {
-  if(req.user && req.params.gameId) {
-    UserDAO.removeFavoriteGame(req.user.id, req.params.gameId).then(status => {
-        res.json({status: status});
-    }).catch(err => {
-      res.status(err.code || 500).json({error: err.message});
-    });
-  }
-  else {
-    res.status(400).json({error: 'Credentials not provided'});
-  }
-});
-
-
 
 module.exports = router

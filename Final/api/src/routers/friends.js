@@ -8,18 +8,51 @@ router.use(express.json());
 const { TokenMiddleware } = require('../middleware/TokenMiddleware');
 
 //Add new friend
-router.post('/', TokenMiddleware, (req,  res) => {
-  res.json({message: `Friend Added`});
+router.post('/:friendId', TokenMiddleware, (req,  res) => {
+  if(req.user && req.params.friendId) {
+    UserDAO.addUserFriend(req.user.id, req.params.friendId).then(status => {
+      res.json({status: status});
+    }).catch(err => {
+      res.status(err.code || 500).json({error: err.message});
+    });
+  }
+  else {
+    res.status(400).json({error: 'Credentials not provided'});
+  }
 });
 
 //Get a user's friends
-router.get('/:userId', TokenMiddleware, (req,  res) => {
+router.get('/all/:userId', TokenMiddleware, (req,  res) => {
   res.json({message: `${req.params.userId}'s friends served`});
 });
 
-//Remove a friend
-router.get('/:userId/friendId', TokenMiddleware, (req,  res) => {
-  res.json({message: `${req.params.friendId} removed from ${req.params.userId}'s friends list`});
+//Check if a user is friend.
+router.get('/confirm/:friendId', TokenMiddleware, (req,  res) => {
+  if(req.user && req.params.friendId) {
+    UserDAO.confirmUserFriend(req.user.id, req.params.friendId).then(status => {
+      res.json({status: status});
+    }).catch(err => {
+      res.status(err.code || 500).json({error: err.message});
+    });
+  }
+  else {
+    res.status(400).json({error: 'Credentials not provided'});
+  }
+});
+
+
+//Remove a friend & make them unfriend you too.
+router.delete('/:friendId', TokenMiddleware, (req,  res) => {
+  if(req.user && req.params.friendId) {
+    UserDAO.removeUserFriend(req.user.id, req.params.friendId).then(status => {
+      res.json({status: status});
+    }).catch(err => {
+      res.status(err.code || 500).json({error: err.message});
+    });
+  }
+  else {
+    res.status(400).json({error: 'Credentials not provided'});
+  }
 });
 
 

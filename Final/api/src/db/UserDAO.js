@@ -49,18 +49,27 @@ module.exports = {
                 return user.validatePassword(password);
             }
             // if no user with provided username
-            return new Error("No such user");
+            throw new Error("No such user");
         });
     },
 
-    //TODO: NEEDS TESTING
     getSpecificUser: (userId) => {
         return db.query('SELECT * FROM user WHERE usr_id=?', [userId]).then(rows => {
             if (rows.length === 1) { // we found our user
                 const user = new User(rows[0]);
                 return user;
             }
-            return new Error("No such user");
+            throw new Error("No such user");
+        });
+    },
+
+    searchForUser: (username) => {
+        return db.query('SELECT * FROM user WHERE usr_username=?', [username]).then(rows => {
+            if (rows.length === 1) { // we found our user
+                const user = new User(rows[0]);
+                return user;
+            }
+            throw new Error("No such user");
         });
     },
 
@@ -104,7 +113,7 @@ module.exports = {
         //Delete you following friend, and friend following you
         return db.query(`DELETE FROM follow 
             WHERE (flw_following_user_id = ? AND flw_followed_user_id = ?) 
-            OR (flw_following_user = ? AND flw_followed_user_id = ?)`, 
+            OR (flw_following_user_id = ? AND flw_followed_user_id = ?)`, 
             [userId, friendId, friendId, userId])
         .then(result => {
             console.log(result);
@@ -138,5 +147,12 @@ module.exports = {
             data.friendsRequests = rows.map(row => row.flw_following_user_id);
         });
         return data;
+    },
+
+    confirmUserFriend: (userId, friendId) => {
+        console.log(userId, friendId);
+        return db.query('SELECT * FROM follow WHERE flw_following_user_id=? AND flw_followed_user_id=?', [userId, friendId]).then(rows => {
+            return rows.length === 1;
+        }); 
     }
 };

@@ -6,18 +6,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous" defer></script>
-    <script src="./js/carousel.js" defer></script>
+    <script src="./js/user.js" type="module"></script>
+    <script src="./js/searchAuth.js" type="module"></script>
     <title>Friends page</title>
 </head>
 <body>
     <nav class="navbar sticky-top bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="/auth">
                 <img src="./images/splitscreen-logo.png" alt="splitscreen-logo" width="30"/>
                 SplitScreen
             </a>
-            <form class="d-flex w-50" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <form id="search-bar" class="d-flex w-50" role="search">
+                <input id="search-input" class="form-control me-2" type="search" placeholder="#game or @user" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -26,16 +27,15 @@
     <div class="container">
         <div class="row g-3">
             <div class="col-12 col-md-8">
-                <h6 class="mt-1">Username Information</h6>
+                <h6 id="username" class="mt-1">Username</h6>
                 <div class="card p-3 user-information">
                     <div class="row g-3">
 
                         <!-- Username | Send Friend Request -->
                         <div class="col-6" id="username-header">
-                            <h4>Username</h4>
+                            <h4 id="name">Username</h4>
                         </div>
-                        <div class="col-6 d-flex justify-content-end align-items-start">
-                            <button id="send-friend-request" class="btn btn-primary">Send Friend Request</button>
+                        <div id="friend-button-container" class="col-6 d-flex justify-content-end align-items-start">
                         </div>
 
                         <!-- Game Stats & Ratings -->
@@ -59,84 +59,16 @@
 
                         <!-- 2x2 grid of favorite games -->
                         <div class="col-6">
-                            <div class="row g-2">
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 1">
+                            <div class="row">
+                                <div class="column favorite-games">
+                                    <h6 class="mt-1">Favorite Games</h6>
+                                    <div id="fav-carousel-inner" class="carousel-inner d-flex flex-wrap align-items-start">
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 2">
-                                </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 3">
-                                </div>
-                                <div class="col-6">
-                                    <img src="./images/Doom.jpg" class="img-fluid rounded" alt="Favorite Video Game Cover 4">
-                                </div>
-                            </div>
                         </div>
 
                     </div>
-                </div>
-                <div class="row">
-                    <div class="column recent-releases">
-                        <h6 class="mt-1">Finished Games</h6>
-                        <div id="recent-release-carousel" class="carousel slide">
-                            <div id="rr-carousel-inner" class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <!--- Temp items for demonstration purposes, will normally be loaded from template -->
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                   <div class="card border-0">
-                                        <div class="game-img-wrapper">
-                                            <img class="card-img-top" src="./images/Doom.jpg" alt="card placeholder"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="rr-carousel-control-prev" class="carousel-control-prev" type="button">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button id="rr-carousel-control-next" class="carousel-control-next" type="button">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </div>                    
             </div>
             <!-- User Activity -->
             <div class="col-12 col-md-4">
@@ -195,15 +127,35 @@
         <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
     </template>
 
-
     <template id="videogameLesserFeatureTemplate">
         <div class="carousel-item">
-            <div class="card border-0">
-                <div class="game-img-wrapper">
-                    <a>
+                <div class="card border-0">
+                    <div class="game-img-wrapper">          
                         <img class="card-img-top" src="" alt=""/>
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a id="card-link">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                        </div>
                     </a>
                 </div>
+        </div>
+    </template>
+
+    <template id="UnselectedSlotTemplate">
+        <div class="carousel-item">
+            <div class="card border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">Empty Favorite Slot.</h5>
+                        <p class="card-text">Go out and find some more favorites!</p>
+                    </div>
+                </a>
             </div>
         </div>
     </template>

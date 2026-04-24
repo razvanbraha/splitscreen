@@ -9,6 +9,8 @@ const handleAuthError = (error) => {
   throw error;
 };
 
+/* ------ Game Routes ------ */
+
 const getFeaturedGame = () => {
   return HTTPClient.get(`${BASE_API_PATH}/games/featured`)
 };
@@ -29,6 +31,8 @@ const getGameByName = (name) => {
   return HTTPClient.get(`${BASE_API_PATH}/games/name/${name}`)
 };
 
+/* ------ Auth Routes ------ */
+
 const logIn = (username, password) => {
   const data = {
     username: username,
@@ -40,6 +44,8 @@ const logIn = (username, password) => {
 const logOut = () => {
   return HTTPClient.post(`${BASE_API_PATH}/logout`, {});
 };
+
+/* ------ User Routes ------ */
 
 const createUser = (firstName, lastName, username, password, innappropriateContent) => {
   const data = {
@@ -58,23 +64,47 @@ const getCurrentUser = () => {
 };
 
 const getUser = (userId) => {
-  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}`)
+  return HTTPClient.get(`${BASE_API_PATH}/users/id/${userId}`)
   .catch(handleAuthError);
 };
 
+const searchUser = (username) => {
+  return HTTPClient.get(`${BASE_API_PATH}/users/name/${username}`)
+  .catch(handleAuthError);
+};
+
+/* ------ Favorite Routes ------ */
+
 const getUserFavoriteGames = (userId) => {
-  return HTTPClient.get(`${BASE_API_PATH}/users/favorite/${userId}`)
+  return HTTPClient.get(`${BASE_API_PATH}/favorite/${userId}`)
   .catch(handleAuthError);
 };
 
 const addUserFavoriteGame = (gameId) => {
-  return HTTPClient.post(`${BASE_API_PATH}/users/favorite/${gameId}`)
+  return HTTPClient.post(`${BASE_API_PATH}/favorite/${gameId}`)
   .catch(handleAuthError);
 }
 
 const removeUserFavoriteGame = (gameId) => {
-  return HTTPClient.delete(`${BASE_API_PATH}/users/favorite/${gameId}`)
+  return HTTPClient.delete(`${BASE_API_PATH}/favorite/${gameId}`)
   .catch(handleAuthError);
+}
+
+/* ------ Friend Routes ------ */
+
+const confirmFriend = (friendId) => {
+  return HTTPClient.get(`${BASE_API_PATH}/friends/confirm/${friendId}`)
+  .catch(handleAuthError);  
+}
+
+const addFriend = (friendId) => {
+  return HTTPClient.post(`${BASE_API_PATH}/friends/${friendId}`)
+  .catch(handleAuthError);  
+}
+
+const removeFriend = (friendId) => {
+  return HTTPClient.delete(`${BASE_API_PATH}/friends/${friendId}`)
+  .catch(handleAuthError);  
 }
 
 export default {
@@ -88,7 +118,11 @@ export default {
   getCurrentUser,
   createUser,
   getUser,
+  searchUser,
   getUserFavoriteGames,
   addUserFavoriteGame,
   removeUserFavoriteGame,
+  confirmFriend,
+  addFriend,
+  removeFriend,
 };

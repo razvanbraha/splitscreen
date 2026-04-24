@@ -38,9 +38,10 @@ let gameSearch = async (search) => {
 }
 
 let userSearch = (search) => {
-    api.getUser(search)
+    api.searchUser(search)
     .then(user => {
-        globalThis.location.href = `./user?id=${user.id}`;
+        console.log(user.id);
+        globalThis.location.href = `/user?id=${user.id}`;
     }).catch(err => {
         alert('Unable to find user.');
         searchInput.value = '';
