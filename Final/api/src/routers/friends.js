@@ -22,8 +22,20 @@ router.post('/:friendId', TokenMiddleware, (req,  res) => {
 });
 
 //Get a user's friends
-router.get('/all/:userId', TokenMiddleware, (req,  res) => {
-  res.json({message: `${req.params.userId}'s friends served`});
+router.get('/all', TokenMiddleware, async (req,  res) => {
+  if(req.user) {
+    try {
+        const data = await UserDAO.getUserFriends(req.user.id)
+        console.log(data);
+        res.send(data)
+    } catch (err) {
+        console.log(err);
+        res.status(err.code || 500).json({error: err.message});
+    };
+  }
+  else {
+    res.status(400).json({error: 'Credentials not provided'});
+  }
 });
 
 //Check if a user is friend.

@@ -195,6 +195,29 @@ h6 {
     color: blue;
 }
 
+.friends-list {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friend-request, .friend {
+    background-color: lightgray;
+    width: 100%;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.friend-requests-list-title, .friends-list-title {
+    color: white;
+}
+
 @media screen and (min-width:576px) {
     .carousel-item {
         flex: 0 0 calc(100%/3);

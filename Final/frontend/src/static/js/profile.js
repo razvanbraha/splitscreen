@@ -5,10 +5,15 @@ const carouselEntryTemplate = document.querySelector('#videogameLesserFeatureTem
 const carouselEmptyTemplate = document.querySelector('#UnselectedSlotTemplate');
 
 const favoriteGamesList = document.querySelector('#fav-carousel-inner');
+const friendsList = document.querySelector('.friends-list');
+const friendRequestsList = document.querySelector('.friend-requests-list');
+
+let id = null;
 
 api.getCurrentUser().then(user => { 
     document.querySelector('#username').innerText = user.username;
     document.querySelector('#name').innerText = `${user.first_name} ${user.last_name}`;
+    id = user.id;
     return api.getUserFavoriteGames(user.id);
 }).then(games => {
     games.forEach((game, idx) => {
@@ -28,10 +33,10 @@ api.getCurrentUser().then(user => {
             }).catch(err => {
                 console.log(err);
             })
-        })
-        
+        });
+
         favoriteGamesList.appendChild(carouselEntry);
-    })
+    });
 
     for (let i = 0; i < 4 - games.length; i++) {
         const carouselEmptyInstance = carouselEmptyTemplate.content.cloneNode(true);
@@ -39,4 +44,59 @@ api.getCurrentUser().then(user => {
         favoriteGamesList.appendChild(carouselEmpty);
     }
 
+});
+
+api.getFriends().then(response => {
+    console.log(response);
+    response.friends.forEach(async friendId => {
+        const user = await api.getUser(friendId);
+        const friendInstance = friendTemplate.content.cloneNode(true);
+        const friend = friendInstance.querySelector('.friend');
+        friend.querySelector('.friend-link').href = `/user?id=${user.id}`;
+        friend.querySelector('.friend-name').innerText = user.username;
+
+        const removeFriendButton = friend.querySelector('.friend-remove');
+        removeFriendButton.addEventListener('click', e => {
+            api.removeFriend(user.id).then(response => {
+                console.log(`Friend Remove Status: ${response.status}`)
+                globalThis.location.reload();
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+
+        friendsList.appendChild(friend);
+    });
+
+    response.friendsRequests.forEach(async friendRequestId => {
+        const user = await api.getUser(friendRequestId);
+        const friendRequestInstance = friendRequestTemplate.content.cloneNode(true);
+        const friendRequest = friendRequestInstance.querySelector('.friend-request');
+        friendRequest.querySelector('.friend-request-link').href = `/user?id=${user.id}`;
+        friendRequest.querySelector('.friend-request-name').innerText = user.username;
+
+        const acceptFriendButton = friendRequest.querySelector('.friend-request-accept');
+        acceptFriendButton.addEventListener('click', e => {
+            api.addFriend(user.id).then(response => {
+                console.log(`Friend Added Status: ${response.status}`)
+                globalThis.location.reload();
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+
+        const rejectFriendRequest = friendRequest.querySelector('.friend-request-reject');
+        rejectFriendRequest.addEventListener('click', e => {
+            api.removeFriend(user.id).then(response => {
+                console.log(`Friend Removed Status: ${response.status}`)
+                globalThis.location.reload();
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+
+        friendRequestsList.appendChild(friendRequest);
+    });
+}).catch(err => {
+    console.log(err);
 })

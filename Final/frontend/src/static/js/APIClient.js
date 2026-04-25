@@ -107,6 +107,11 @@ const removeFriend = (friendId) => {
   .catch(handleAuthError);  
 }
 
+const getFriends = () => {
+  return HTTPClient.get(`${BASE_API_PATH}/friends/all`)
+  .catch(handleAuthError);   
+}
+
 export default {
   getFeaturedGame,
   getRecentGames,
@@ -125,4 +130,5 @@ export default {
   confirmFriend,
   addFriend,
   removeFriend,
+  getFriends,
 };

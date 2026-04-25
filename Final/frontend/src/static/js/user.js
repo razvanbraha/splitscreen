@@ -58,17 +58,7 @@ api.getUser(id).then(user => {
         carouselEntry.querySelector('.card-title').innerText = game.name;
 
         const deleteButton = carouselEntry.querySelector('.btn');
-        deleteButton.addEventListener('click', e => {
-            api.removeUserFavoriteGame(game.id).then(response => {
-                console.log(`Remove Fav Game:  ${response.status}`)
-                globalThis.location.reload();
-            }).catch(err => {
-                console.log(err);
-            })
-        })
-
-
-
+        deleteButton.remove();
         favoriteGamesList.appendChild(carouselEntry);
     })
 

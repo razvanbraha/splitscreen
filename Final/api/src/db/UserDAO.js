@@ -121,31 +121,30 @@ module.exports = {
         });
     },
 
-    //TODO: TEST EXTENSIVELY
-    getUserFriends: (userId) => {
+    getUserFriends: async (userId) => {
         let data =  { };
         //Check for mutual friends
-        db.query(`SELECT * FROM follow t1
-                  WHERE flw_followed_user_id=? AND
-                  EXISTS (SELECT * 
-                              FROM follow t2
-                              WHERE t2.flw_following_user_id = t1.flw_followed_user_id
-                              AND t2.flw_followed_user_id = t1.flw_following_user_id)`, [userId])
-        .then(rows => {
-            console.log(rows)
-            data.friends = rows.map(row => row.flw_following_user_id);
-        });
+        const friendsRows = await db.query(`
+            SELECT t1.*
+            FROM follow t1
+            JOIN follow t2
+            ON t2.flw_following_user_id = t1.flw_followed_user_id
+            AND t2.flw_followed_user_id = t1.flw_following_user_id
+            WHERE t1.flw_followed_user_id = ?;`, [userId]);
+        console.log(friendsRows);
+        data.friends = friendsRows.map(row => row.flw_following_user_id);
+
         //Check for friend requests
-        db.query(`SELECT * FROM follow t1
-                  WHERE flw_followed_user_id=? AND
-                  NOT EXISTS (SELECT * 
-                              FROM follow t2
-                              WHERE t2.flw_following_user_id = t1.flw_followed_user_id
-                              AND t2.flw_followed_user_id = t1.flw_following_user_id)`, [userId])
-        .then(rows => {
-            console.log(rows)
-            data.friendsRequests = rows.map(row => row.flw_following_user_id);
-        });
+        const friendRequestRows = await db.query(`
+            SELECT t1.*
+            FROM follow t1
+            LEFT JOIN follow t2
+            ON t2.flw_following_user_id = t1.flw_followed_user_id
+            AND t2.flw_followed_user_id = t1.flw_following_user_id
+            WHERE t1.flw_followed_user_id = ?
+            AND t2.flw_following_user_id IS NULL;`, [userId]);
+                console.log(friendRequestRows);
+        data.friendsRequests = friendRequestRows.map(row => row.flw_following_user_id);
         return data;
     },
 
