@@ -9,9 +9,15 @@ const UserDAO = require('../db/UserDAO');
 const GameDAO = require('../db/GameDAO');
 
 //Update user info
-router.put('/update/:userId', (req,  res) => {
-    //TODO Add update user functionality (change username & innapropriate content settings)
-    res.json({message: `Updated user: ${req.params.userId} with ${req.body.username}`});
+router.put('/update/:username', TokenMiddleware, (req,  res) => {
+    if (req.user && req.params.username)
+        UserDAO.updateUser(req.user.id, req.params.username).then(status => {
+        req.user.username = req.params.username;
+        res.json({status: status});
+    }).catch(err => {
+        console.log(err);
+      res.status(err.code || 500).json({error: err.message});
+    });
 });
 
 //Get current user

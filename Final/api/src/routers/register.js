@@ -10,9 +10,9 @@ const { generateToken } = require('../middleware/TokenMiddleware');
 //Register
 router.post('/', async (req,  res) => {
     console.log("HERE");
-    const {firstname, lastname, username, password, innappropriateContent} = req.body;
-    if (firstname && lastname && username && password && innappropriateContent) {
-        UserDAO.createNewUser(username, password, firstname, lastname, innappropriateContent)
+    const {firstname, lastname, username, password} = req.body;
+    if (firstname && lastname && username && password) {
+        UserDAO.createNewUser(username, password, firstname, lastname)
         .then(user => {
             generateToken(req, res, user);
             return res.json({user: user});

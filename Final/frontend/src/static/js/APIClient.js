@@ -73,6 +73,11 @@ const searchUser = (username) => {
   .catch(handleAuthError);
 };
 
+const updateUser = (username) => {
+  return HTTPClient.put(`${BASE_API_PATH}/users/update/${username}`)
+  .catch(handleAuthError);
+};
+
 /* ------ Favorite Routes ------ */
 
 const getUserFavoriteGames = (userId) => {
@@ -124,6 +129,7 @@ export default {
   createUser,
   getUser,
   searchUser,
+  updateUser,
   getUserFavoriteGames,
   addUserFavoriteGame,
   removeUserFavoriteGame,

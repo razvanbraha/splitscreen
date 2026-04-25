@@ -4,9 +4,9 @@ const crypto = require('node:crypto');
 
 module.exports = {
 
-    createNewUser: (username, password, firstName, lastName, innappropriateContent) => {
+    createNewUser: (username, password, firstName, lastName) => {
         return new Promise((resolve, reject) => {
-            if (!username || !password || !firstName || !lastName || !innappropriateContent) {
+            if (!username || !password || !firstName || !lastName) {
                  reject({code: 400, message: "Missing account information"});
             }
 
@@ -21,8 +21,8 @@ module.exports = {
                 }
                 const digest = derivedKey.toString('hex');
                 
-                return db.query(`INSERT INTO user (usr_first_name, usr_last_name, usr_username, usr_password, usr_salt, usr_inappropriate_content)
-                    VALUES (?, ?, ?, ?, ?, ?) RETURNING *`, [firstName, lastName, username, digest, salt, innappropriateContent === 'on'])
+                return db.query(`INSERT INTO user (usr_first_name, usr_last_name, usr_username, usr_password, usr_salt)
+                    VALUES (?, ?, ?, ?, ?) RETURNING *`, [firstName, lastName, username, digest, salt])
                 .then(rows => {
                     if (!rows[0]) {
                         console.log('Error: User could not be created');
@@ -40,6 +40,12 @@ module.exports = {
                 });
             });
         });
+    },
+
+    updateUser: (id, username) => {
+        return db.query('UPDATE user SET usr_username=? WHERE usr_id=?', [username, id]).then(result => {
+            return result.affectedRows > 0;;
+        }); 
     },
 
     getUserByCredentials: (username, password) => {

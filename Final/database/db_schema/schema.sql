@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `usr_username` varchar(150) NOT NULL,
   `usr_password` varchar(255) NOT NULL,
   `usr_salt` varchar(100) NOT NULL,
-  `usr_inappropriate_content` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`usr_id`),
   UNIQUE KEY `uq_user_username` (`usr_username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

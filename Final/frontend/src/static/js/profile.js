@@ -7,6 +7,8 @@ const carouselEmptyTemplate = document.querySelector('#UnselectedSlotTemplate');
 const favoriteGamesList = document.querySelector('#fav-carousel-inner');
 const friendsList = document.querySelector('.friends-list');
 const friendRequestsList = document.querySelector('.friend-requests-list');
+const settingsForm = document.querySelector('.settings-form');
+const newUsername = document.querySelector('#usernameInput');
 
 let id = null;
 
@@ -99,4 +101,39 @@ api.getFriends().then(response => {
     });
 }).catch(err => {
     console.log(err);
+});
+
+const errorBox = document.querySelector('#settings-errorbox');
+
+function showError(error) {
+  errorBox.classList.remove("hidden");
+  if(error.status === 409) {
+    errorBox.textContent = "Error: Username already taken";
+  }
+  else if (error.status === 400) {
+    errorBox.textContent = 'Error: Missing information';
+  }
+  else {
+    errorBox.textContent = error;
+  }
+}
+
+settingsForm.addEventListener('submit', e => {
+    e.preventDefault();
+    errorBox.classList.add("hidden");
+
+    if (newUsername.value === '') {
+        errorBox.classList.remove('hidden');
+        errorBox.textContent = "Error: No username entered.";
+        return;
+    }
+
+    api.updateUser(newUsername.value).then(response => {
+        api.logOut().then(() => {
+            document.location = "/";
+        });
+    }).catch(err => {
+        showError(error)
+    })
 })
+

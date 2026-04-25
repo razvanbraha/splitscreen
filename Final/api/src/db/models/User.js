@@ -5,7 +5,6 @@ module.exports = class User {
   first_name = null;
   last_name = null;
   username = null;
-  innapropriateContent = null;
   #passwordHash = null;;
   #salt = null;;
 
@@ -16,7 +15,6 @@ module.exports = class User {
     this.username = data.usr_username;
     this.#salt = data.usr_salt;
     this.#passwordHash = data.usr_password;
-    this.innapropriateContent = data.usr_inappropriate_content
   }
 
   validatePassword(password) {
