@@ -179,9 +179,11 @@ const getReviewsByUser = (userId) => {
         .catch(handleAuthError);
 };
 
-const getFriendActivities = (userId) => {
-    return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/games`)
-        .catch(handleAuthError);
+const getFriendActivities = (friendIds) => {
+    return Promise.all(
+        friendIds.map(id => HTTPClient.get(`${BASE_API_PATH}/users/${id}/games`)
+            .catch(() => []))
+    ).then(results => results.flat());
 };
 
 export default {

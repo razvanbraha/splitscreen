@@ -88,10 +88,6 @@ reviewForm.addEventListener('submit', e => {
     const selectedStar = document.querySelector('input[name="starRating"]:checked');
     if (!selectedStar) return;
 
-
-    console.log('reviewForm:', reviewForm);
-    console.log('reviewMessage:', reviewMessage);
-
     const score = parseInt(selectedStar.value); 
     const message = reviewMessage.value;
 
@@ -148,23 +144,24 @@ api.getCurrentUser().then(user => {
     return Promise.all([
         api.getUserFriends(user.id),
         api.getReviewsByGame(id),
-        api.getFriendActivities(user.id)
     ]);
-}).then(([{ friends: friendIds }, gameReviews, allActivities]) => {
-
-    // Friend statuses for this game (cap at 3)
+}).then(([{ friends: friendIds }, gameReviews]) => {
+    return Promise.all([
+        Promise.resolve(friendIds),
+        Promise.resolve(gameReviews),
+        api.getFriendActivities(friendIds)  // now passing friend IDs
+    ]);
+}).then(([friendIds, gameReviews, allActivities]) => {
     const friendStatuses = allActivities
-        .filter(a => friendIds.includes(a.user.id) && a.game.id === Number.parseInt(id))
+        .filter(a => a.game.id === Number.parseInt(id))
         .slice(0, 3);
 
-    // Friend reviews for this game (cap at 3)
     const friendReviews = gameReviews
-        .filter(r => friendIds.includes(r.user.id))
+        .filter(r => friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
-    // Other reviews for this game — exclude friends (cap at 3)
     const otherReviews = gameReviews
-        .filter(r => !friendIds.includes(r.user.id))
+        .filter(r => !friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
     friendStatuses.forEach(a => renderStatus(a, friendStatusList));
