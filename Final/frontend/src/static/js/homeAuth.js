@@ -74,7 +74,6 @@ api.getRecentGames().then(games => {
         carouselEntry.querySelector('#card-link').href=`/gameauth?id=${game.id}`;
         carouselEntry.querySelector('.card-img-top').src=game.image;
         carouselEntry.querySelector('.card-img-top').alt=`${game.name} cover photo`;
-        carouselEntry.querySelector('.card-title').innerText = game.name;
 
         recentlyReleasedCarouselList.appendChild(carouselEntry);
     })
@@ -89,7 +88,6 @@ api.getAnticipatedGames().then(games => {
         carouselEntry.querySelector('#card-link').href=`/gameauth?id=${game.id}`;
         carouselEntry.querySelector('.card-img-top').src=game.image;
         carouselEntry.querySelector('.card-img-top').alt=`${game.name} cover photo`;
-        carouselEntry.querySelector('.card-title').innerText = game.name;
 
         comingSoonCarouselList.appendChild(carouselEntry);
     })
