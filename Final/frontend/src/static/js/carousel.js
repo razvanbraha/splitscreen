@@ -26,9 +26,7 @@ const activateCarousel = () => {
     window.addEventListener('resize', e => {
         browserWidth = window.innerWidth
         if (browserWidth >= 1300) {
-            numCardDisplay = 6;
-        } else if (browserWidth >= 576) {
-            numCardDisplay = 4;
+            numCardDisplay = 5;
         } else {
             numCardDisplay = 3;
         }
