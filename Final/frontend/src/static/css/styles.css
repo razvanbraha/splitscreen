@@ -101,9 +101,10 @@ a:hover {
 }
 
 .friend-activity {
-    height: 99%;
     border-radius: 5px;
     background-color: darkslategray;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
 }
 
 .game-img-wrapper {
@@ -158,6 +159,7 @@ a:hover {
 
 #star-rating {
     display: flex;
+    flex-direction: row-reverse;
 }
 
 #star-rating input {

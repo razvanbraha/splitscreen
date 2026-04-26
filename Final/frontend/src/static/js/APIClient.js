@@ -78,6 +78,7 @@ const updateUser = (username) => {
   .catch(handleAuthError);
 };
 
+
 /* ------ Favorite Routes ------ */
 
 const getUserFavoriteGames = (userId) => {
@@ -117,6 +118,74 @@ const getFriends = () => {
   .catch(handleAuthError);   
 }
 
+const getUserFriends = (userId) => {
+    return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/friends`)
+        .catch(handleAuthError);
+};
+
+/* ------ Activity Routes ------ */
+
+const getUserGameStatus = (userId, gameId) => {
+  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`)
+    .catch(handleAuthError);
+};
+
+const setUserGameStatus = (userId, gameId, status) => {
+  return HTTPClient.put(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`, { status })
+    .catch(handleAuthError);
+};
+
+const clearUserGameStatus = (userId, gameId) => {
+  return HTTPClient.delete(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`)
+    .catch(handleAuthError);
+};
+
+const getUserActivities = (userId) => {
+  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/games`)
+    .catch(handleAuthError);
+};
+
+/* ------ Review Routes ------ */
+
+const submitReview = (userId, gameId, score, message) => {
+    return HTTPClient.post(`${BASE_API_PATH}/reviews`, { userId, gameId, score, reviewMessage: message })
+        .catch(handleAuthError);
+};
+
+const getUserReviewForGame = (userId, gameId) => {
+    return HTTPClient.get(`${BASE_API_PATH}/reviews/user/${userId}/game/${gameId}`)
+        .catch(handleAuthError);
+};
+
+const updateReview = (reviewId, userId, score, message) => {
+    return HTTPClient.put(`${BASE_API_PATH}/reviews/${reviewId}`, { userId, score, reviewMessage: message })
+        .catch(handleAuthError);
+};
+
+/* ------ Feed Routes ------ */
+
+const getAllReviews = () => {
+    return HTTPClient.get(`${BASE_API_PATH}/reviews`)
+        .catch(handleAuthError);
+};
+
+const getReviewsByGame = (gameId) => {
+    return HTTPClient.get(`${BASE_API_PATH}/reviews/game/${gameId}`)
+        .catch(handleAuthError);
+};
+
+const getReviewsByUser = (userId) => {
+    return HTTPClient.get(`${BASE_API_PATH}/reviews/user/${userId}`)
+        .catch(handleAuthError);
+};
+
+const getFriendActivities = (friendIds) => {
+    return Promise.all(
+        friendIds.map(id => HTTPClient.get(`${BASE_API_PATH}/users/${id}/games`)
+            .catch(() => []))
+    ).then(results => results.flat());
+};
+
 export default {
   getFeaturedGame,
   getRecentGames,
@@ -137,4 +206,16 @@ export default {
   addFriend,
   removeFriend,
   getFriends,
+  getUserFriends,
+  getUserGameStatus,
+  setUserGameStatus,
+  clearUserGameStatus,
+  getUserActivities,
+  submitReview,
+  getUserReviewForGame,
+  updateReview,
+  getAllReviews,
+  getReviewsByGame,
+  getReviewsByUser,
+  getFriendActivities
 };

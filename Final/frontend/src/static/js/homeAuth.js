@@ -12,6 +12,36 @@ const featuredGame = document.querySelector('.featured-game');
 
 const carouselEntryTemplate = document.querySelector('#videogameLesserFeatureTemplate');
 
+const friendStatusList = document.querySelector('#friend-status-list');
+const friendReviewList = document.querySelector('#friend-review-list');
+const otherReviewList = document.querySelector('#other-review-list');
+const statusTemplate = document.querySelector('#statusTemplate');
+const reviewTemplate = document.querySelector('#reviewTemplate');
+
+const renderStars = (score) =>  '★'.repeat(score) + '☆'.repeat(5 - score);
+
+const renderStatus = (activity, container) => {
+    const instance = statusTemplate.content.cloneNode(true);
+    instance.querySelector('.status-username').textContent = activity.user.username;
+    instance.querySelector('.status-user-link').href = `/user?id=${activity.user.id}`;
+    instance.querySelector('.status-game-name').textContent = activity.game.name;
+    instance.querySelector('.status-game-link').href = `/gameauth?id=${activity.game.id}`;
+    instance.querySelector('.status-action').textContent = activity.action;
+    container.appendChild(instance);
+};
+
+const renderReview = (review, container) => {
+    const instance = reviewTemplate.content.cloneNode(true);
+    instance.querySelector('.review-username').textContent = review.user.username;
+    instance.querySelector('.review-user-link').href = `/user?id=${review.user.id}`;
+    instance.querySelector('.review-game-name').textContent = review.game.name;
+    instance.querySelector('.review-game-link').href = `/gameauth?id=${review.game.id}`;
+    instance.querySelector('.review-score').textContent = renderStars(review.score);
+    instance.querySelector('.review-message').value = review.message;
+    instance.querySelector('.review-date').textContent = new Date(review.createdAt).toLocaleDateString();
+    container.appendChild(instance);
+};
+
 api.getFeaturedGame().then(game => {
     featuredGame.querySelector('#featured-game-link').href=`/gameauth?id=${game.id}`;
     featuredGame.querySelector('#featured-game-image').src=game.image;
@@ -64,3 +94,36 @@ api.getAnticipatedGames().then(games => {
 
     carousel.activateCarousel();
 });
+
+api.getCurrentUser().then(user => {
+    return Promise.all([
+        api.getUserFriends(user.id),
+        api.getAllReviews(),
+    ]);
+}).then(([{ friends: friendIds }, allReviews]) => {
+    return Promise.all([
+        Promise.resolve(friendIds),
+        Promise.resolve(allReviews),
+        api.getFriendActivities(friendIds)  // pass friend IDs instead of userId
+    ]);
+}).then(([friendIds, allReviews, allActivities]) => {
+
+    // Friend statuses (cap at 3)
+    const friendStatuses = allActivities
+        .slice(0, 3);
+
+    // Friend reviews (cap at 3)
+    const friendReviews = allReviews
+        .filter(r => friendIds.some(fid => Number(fid) === r.user.id))
+        .slice(0, 3);
+
+    // Other reviews — exclude friends (cap at 3)
+    const otherReviews = allReviews
+        .filter(r => !friendIds.some(fid => Number(fid) === r.user.id))
+        .slice(0, 3);
+
+    friendStatuses.forEach(a => renderStatus(a, friendStatusList));
+    friendReviews.forEach(r => renderReview(r, friendReviewList));
+    otherReviews.forEach(r => renderReview(r, otherReviewList));
+
+}).catch(err => console.log(err));
