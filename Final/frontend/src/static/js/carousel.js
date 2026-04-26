@@ -16,9 +16,7 @@ const activateCarousel = () => {
     let browserWidth = window.innerWidth
     let numCardDisplay;
     if (browserWidth >= 1300) {
-        numCardDisplay = 6;
-    } else if (browserWidth >= 576) {
-        numCardDisplay = 4;
+        numCardDisplay = 5;
     } else {
         numCardDisplay = 3;
     }
@@ -70,7 +68,6 @@ const activateCarousel = () => {
     })
 
     //Pan Carousel to previous item
-    //TODO: Fix panning issues on larger pages
     prevCardButtonRR.addEventListener('click', e => {
         if (scrollPosition <=  0) {
             scrollPosition = cardWidth * (numCardDisplay - 1);
