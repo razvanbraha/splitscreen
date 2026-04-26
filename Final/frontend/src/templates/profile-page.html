@@ -73,8 +73,8 @@
                 </div>
                 <div class="row">
                     <div class="column favorite-games">
-                        <h6 class="mt-1">Favorite Games</h6>
-                        <div id="fav-carousel-inner" class="carousel-inner d-flex flex-wrap align-items-start">
+                        <h6 class="mt-2">Favorite Games</h6>
+                        <div id="fav-carousel-inner" class="carousel-inner d-flex flex-wrap justify-content-center">
                         </div>
                     </div>
                 </div>
@@ -127,9 +127,8 @@
         </div>
     </div>
 
-    <!-- TODO FINISH FOOTER -->
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
-        <div>Footer</div>
+    <footer class="d-flex justify-content-center align-items-center py-3 my-4 border-top"> 
+        <div class="footer-text">All Rights Reserved © 2026</div>
     </footer>
 
     <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
@@ -162,8 +161,8 @@
 
 
     <template id="videogameLesserFeatureTemplate">
-        <div class="carousel-item">
-                <div class="card border-0">
+        <div class="carousel-item mb-2">
+                <div class="card h-100 border-0">
                     <div class="game-img-wrapper">          
                         <img class="card-img-top" src="" alt=""/>
                         <button class="btn">
@@ -174,7 +173,7 @@
                         </button>
                     </div>
                     <a id="card-link">
-                        <div class="card-body">
+                        <div class="card-body filled-card">
                             <h5 class="card-title"></h5>
                         </div>
                     </a>
@@ -183,8 +182,8 @@
     </template>
 
     <template id="UnselectedSlotTemplate">
-        <div class="carousel-item">
-            <div class="card border-0">
+        <div class="carousel-item mb-2">
+            <div class="card h-100 border-0">
                     <div class="card-body">
                         <h5 class="card-title">Empty Favorite Slot.</h5>
                         <p class="card-text">Go out and find some more favorites!</p>
