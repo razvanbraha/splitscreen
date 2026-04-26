@@ -145,6 +145,7 @@ h6 {
 
 #star-rating {
     display: flex;
+    flex-direction: row-reverse;
 }
 
 #star-rating input {

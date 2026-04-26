@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `act_gam_id` int(10) unsigned NOT NULL,
   `act_action` ENUM('playing', 'finished', 'dropped') DEFAULT NULL,
   PRIMARY KEY (`act_id`),
+  UNIQUE KEY `uq_activity_user_game` (`act_usr_id`, `act_gam_id`),  -- ADD THIS
   KEY `FK_ACT_USR` (`act_usr_id`),
   KEY `FK_ACT_GAM` (`act_gam_id`),
   CONSTRAINT `FK_ACT_GAM` FOREIGN KEY (`act_gam_id`) REFERENCES `game` (`gme_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

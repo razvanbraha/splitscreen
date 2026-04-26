@@ -2,7 +2,7 @@ import api from './APIClient.js';
 
 function displayUserInHeader(user) {
   let profileLink = document.createElement('a');
-  profileLink.href = `/profile`;
+  profileLink.href = `/user`;
   profileLink.innerHTML = user.username;
   profileLink.className = "btn btn-sm btn-outline-secondary"
 
