@@ -101,23 +101,27 @@ api.getCurrentUser().then(user => {
     return Promise.all([
         api.getUserFriends(user.id),
         api.getAllReviews(),
-        api.getFriendActivities(user.id)
     ]);
-}).then(([{ friends: friendIds }, allReviews, allActivities]) => {
+}).then(([{ friends: friendIds }, allReviews]) => {
+    return Promise.all([
+        Promise.resolve(friendIds),
+        Promise.resolve(allReviews),
+        api.getFriendActivities(friendIds)  // pass friend IDs instead of userId
+    ]);
+}).then(([friendIds, allReviews, allActivities]) => {
 
     // Friend statuses (cap at 3)
     const friendStatuses = allActivities
-        .filter(a => friendIds.includes(a.user.id))
         .slice(0, 3);
 
     // Friend reviews (cap at 3)
     const friendReviews = allReviews
-        .filter(r => friendIds.includes(r.user.id))
+        .filter(r => friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
     // Other reviews — exclude friends (cap at 3)
     const otherReviews = allReviews
-        .filter(r => !friendIds.includes(r.user.id))
+        .filter(r => !friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
     friendStatuses.forEach(a => renderStatus(a, friendStatusList));
