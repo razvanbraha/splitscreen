@@ -36,7 +36,6 @@ api.getCurrentUser().then(user => {
                 console.log(err);
             })
         });
-
         favoriteGamesList.appendChild(carouselEntry);
     });
 

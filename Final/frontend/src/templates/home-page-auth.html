@@ -27,13 +27,13 @@
         </div>
     </nav>
 
-    <div class="container">
+        <div class="container">
         <div class="row g-3">
             <div class="col-12 col-md-8">
                 <h6 class="mt-1">Featured</h6>
                 <div class="featured-game ">
                     <div class="row g-0">
-                        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-center justify-content-center">
                             <a id="featured-game-link" href="/game">
                                 <div class="text-center p-2">
                                     <!--- Temp image for display purposes -->
@@ -41,14 +41,10 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 d-flex">
                             <div class="featured-game-written">
-                                <div class="featured-game-title d-flex align-items-center">
+                                <div class="featured-game-title d-flex align-items-center justify-content-center">
                                     <h4 id="featured-game-title">Game Title</h4>
-                                </div>
-                                <div id="featured-genres" class="featured-info">
-                                    <h6>Genres</h6>
-                                    <div id="genres-list"></div>
                                 </div>
                                 <div id="featured-ratings" class="featured-info">
                                     <div class="ratings-title">
@@ -61,6 +57,14 @@
                                         <div id="star-4">★ 4 Star: </div>
                                         <div id="star-5">★ 5 Star: </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="featured-game-stats">
+                                <div id="featured-genres" class="featured-info">
+                                    <h6>Genres</h6>
+                                    <div id="genres-list"></div>
                                 </div>
                                 <div id="featured-info" class="featured-info">
                                     <div id="featured-platforms">
@@ -130,12 +134,9 @@
     <template id="videogameLesserFeatureTemplate">
         <div class="carousel-item">
             <a id="card-link">
-                <div class="card border-0">
+                <div class="card h-100 border-0">
                     <div class="game-img-wrapper">          
                         <img class="card-img-top" src="" alt=""/>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
                     </div>
                 </div>
             </a>
