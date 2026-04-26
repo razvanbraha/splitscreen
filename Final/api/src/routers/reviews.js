@@ -14,11 +14,11 @@ router.post('/', async (req, res) => {
 });
 
 //Update existing review
-router.put('/:reviewId', (req,  res) => {
+router.put('/:reviewId', (req, res) => {
     const { reviewId } = req.params;
-    const { userId, score, reviewMessage } = req.body;
+    const { score, reviewMessage } = req.body;
 
-    reviewDAO.update(reviewId, userId, score, reviewMessage)
+    reviewDAO.updateReview(reviewId, score, reviewMessage)  // changed .update to .updateReview
         .then(() => res.json({ message: `Review ${reviewId} updated.` }))
         .catch(err => res.status(err.code || 500).json({ error: err.message }));
 });
@@ -62,6 +62,22 @@ router.get('/game/:gameId', (req,  res) => {
             }
             res.json(reviews);
         })
+        .catch(err => res.status(err.code || 500).json({ error: err.message }));
+});
+
+//Get user's review for a game
+router.get('/user/:userId/game/:gameId', (req, res) => {
+    const { userId, gameId } = req.params;
+
+    reviewDAO.getUserReviewForGame(userId, gameId)
+        .then(review => res.json(review))
+        .catch(err => res.status(err.code || 500).json({ error: err.message }));
+});
+
+// GET all reviews (home page)
+router.get('/', (req, res) => {
+    reviewDAO.getAllReviews()
+        .then(reviews => res.json(reviews))
         .catch(err => res.status(err.code || 500).json({ error: err.message }));
 });
 

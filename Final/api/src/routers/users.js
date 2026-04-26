@@ -6,7 +6,6 @@ router.use(cookieParser());
 router.use(express.json());
 const { TokenMiddleware } = require('../middleware/TokenMiddleware');
 const UserDAO = require('../db/UserDAO');
-const GameDAO = require('../db/GameDAO');
 
 //Update user info
 router.put('/update/:username', TokenMiddleware, (req,  res) => {
@@ -38,6 +37,14 @@ router.get('/id/:userId', TokenMiddleware, (req,  res) => {
   else {
     res.status(400).json({error: 'Credentials not provided'});
   }
+});
+
+//Get user's friends
+router.get('/:userId/friends', TokenMiddleware, (req, res) => {
+    const { userId } = req.params;
+    UserDAO.getUserFriends(userId)
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 //Search for a user with a given username

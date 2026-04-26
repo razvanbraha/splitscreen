@@ -4,11 +4,15 @@ module.exports = class Review {
   game = null;
   score = null;
   message = null;
+  createdAt = null;
+  updatedAt = null;
 
   constructor(data) {
     this.id = data.rev_id;
     this.score = data.rev_score;
     this.message = data.rev_message;
+    this.createdAt = data.rev_created_at;
+    this.updatedAt = data.rev_updated_at;
   }
 
   setUser(user) {

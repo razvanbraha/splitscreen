@@ -19,7 +19,7 @@ app.use('/logout', logout);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/reviews', reviews);
-app.use('/activities', activities);
+app.use('/users/:userId/games', activities);
 app.use('/friends', friends);
 app.use('/games', games);
 app.use('/favorite', favorites);

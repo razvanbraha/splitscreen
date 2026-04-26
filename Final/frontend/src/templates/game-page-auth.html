@@ -123,20 +123,19 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="card p-3 h-100" id="game-review">
-                            <form action="send" method="POST" enctype="multipart/form-data">
-
+                            <form id="review-form">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="mb-0">Review GAME TITLE</h5>
+                                    <h5 class="mb-0">Your Review:</h5>
                                     <div id="star-rating" class="d-flex gap-1">
-                                        <input type="radio" id="star1" name="starRating" value="1-star" required>
+                                        <input type="radio" id="star1" name="starRating" value="1" required>
                                         <label for="star1">★</label>
-                                        <input type="radio" id="star2" name="starRating" value="2-star" required>
+                                        <input type="radio" id="star2" name="starRating" value="2" required>
                                         <label for="star2">★</label>
-                                        <input type="radio" id="star3" name="starRating" value="3-star" required>
+                                        <input type="radio" id="star3" name="starRating" value="3" required>
                                         <label for="star3">★</label>
-                                        <input type="radio" id="star4" name="starRating" value="4-star" required>
+                                        <input type="radio" id="star4" name="starRating" value="4" required>
                                         <label for="star4">★</label>
-                                        <input type="radio" id="star5" name="starRating" value="5-star" required>
+                                        <input type="radio" id="star5" name="starRating" value="5" required>
                                         <label for="star5">★</label>
                                     </div>
                                 </div>
@@ -145,8 +144,9 @@
                                     <textarea class="form-control" name="review-message" id="review-message" rows="10" minlength="10" placeholder="Game review text..." required></textarea>
                                 </div>
 
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-between align-items-center mt-3">
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    <small id="review-timestamp" class="text-muted card p-2 bg-light" style="display:none;"></small>
                                 </div>
 
                             </form>
@@ -155,45 +155,13 @@
                 </div>
             </div>
             
-            <!-- Right side: Friends Activity -->
-            <div class="col-12 col-md-4">
+            <!-- Right side: Recent Activity -->
+            <div class="col-12 col-md-4 align-self-start">
                 <h6 class="mt-1">Recent Activity</h6>
                 <div class="friend-activity d-flex flex-column gap-2 p-2">
-
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <a href="/user">
-                                <span class="fw-bold review-username">User 1</span>
-                            </a>
-                            <span>★★★★</span>
-                        </div>
-                        <textarea class="form-control" rows="4" readonly placeholder="This game was amazing, loved every second of it!"></textarea>
-                    </div>
-
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold review-username">Friend 1</span>
-                            <span>★★★</span>
-                        </div>
-                        <textarea class="form-control" rows="5" readonly placeholder="Pretty decent game, story was good but gameplay felt repetitive."></textarea>
-                    </div>
-
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold review-username">Friend 2</span>
-                            <span>★★★★★</span>
-                        </div>
-                        <textarea class="form-control" rows="5" readonly placeholder="Absolute masterpiece, one of the best games I have ever played."></textarea>
-                    </div>
-
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="fw-bold review-username">User 2</span>
-                            <span>★★</span>
-                        </div>
-                        <textarea class="form-control" rows="4" readonly placeholder="Had potential but fell short in too many areas for me."></textarea>
-                    </div>
-
+                    <div id="friend-status-list"></div>
+                    <div id="friend-review-list"></div>
+                    <div id="other-review-list"></div>
                 </div>
             </div>
         </div>
@@ -204,8 +172,36 @@
         <div>Footer</div>
     </footer>
 
-    <template id="friendActivityTemplate">
-        <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
+    <template id="statusTemplate">
+        <div class="card p-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="status-user-link" href="#">
+                    <span class="fw-bold status-username"></span>
+                </a>
+                <a class="status-game-link" href="#">
+                    <span class="status-game-name"></span>
+                </a>
+            </div>
+            <div class="mt-1">
+                <span class="badge bg-secondary status-action"></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="reviewTemplate">
+        <div class="card p-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <a class="review-user-link" href="#">
+                    <span class="fw-bold review-username"></span>
+                </a>
+                <a class="review-game-link" href="#">
+                    <span class="review-game-name text-muted small"></span>
+                </a>
+                <span class="review-score"></span>
+            </div>
+            <textarea class="form-control review-message" rows="3" readonly></textarea>
+            <small class="text-muted mt-1 review-date"></small>
+        </div>
     </template>
 
     <template id="videogameLesserFeatureTemplate">

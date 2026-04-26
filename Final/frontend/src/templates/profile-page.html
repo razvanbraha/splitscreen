@@ -21,14 +21,26 @@
                 <input id="search-input" class="form-control me-2" type="search" placeholder="#game or @user" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <button 
-                class="btn btn-sm btn-outline-secondary" 
-                type="button"
-                data-bs-toggle="modal" 
-                data-bs-target="#settingsModal"
-            >
-                Settings
-            </button>
+            <div class="d-flex gap-2">
+                <button 
+                    id="add-friend-btn"
+                    class="btn btn-sm btn-outline-primary" 
+                    type="button"
+                    style="display:none;"
+                >
+                    Add Friend
+                </button>
+                <button 
+                    id="settings-btn"
+                    class="btn btn-sm btn-outline-secondary" 
+                    type="button"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#settingsModal"
+                    style="display:none;"
+                >
+                    Settings
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -79,49 +91,12 @@
                     </div>
                 </div>
             </div>
-            <!-- User Activity -->
-            <div class="col-12 col-md-4">
+            <!-- Right side: User Activity -->
+            <div class="col-12 col-md-4 align-self-start">
                 <h6 class="mt-1">Recent Activity</h6>
                 <div class="friend-activity d-flex flex-column gap-2 p-2">
-
-
-                    <div class="card p-3">
-                        <div class="d-flex gap-2">
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="fw-bold review-username">Username</span>
-                                    <span>★★★★</span>
-                                </div>
-                                <textarea class="form-control" rows="4" readonly>This game was amazing, loved every second of it!</textarea>
-                            </div>
-                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
-                        </div>
-                    </div>
-
-                    <div class="card p-3">
-                        <div class="d-flex gap-2">
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="fw-bold review-username">Username</span>
-                                </div>
-                                <p class="mb-0 mt-2 text-muted">Started playing a new game!</p>
-                            </div>
-                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
-                        </div>
-                    </div>
-
-                    <div class="card p-3">
-                        <div class="d-flex gap-2">
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="fw-bold review-username">Username</span>
-                                    <span>★★★★★</span>
-                                </div>
-                                <textarea class="form-control" rows="5" readonly>Absolute masterpiece, one of the best games I have ever played.</textarea>
-                            </div>
-                            <img src="./images/Doom.jpg" class="rounded" alt="Game Cover" style="width: 60px; height: 80px; object-fit: cover;">
-                        </div>
-                    </div>
+                    <div id="user-status-list"></div>
+                    <div id="user-review-list"></div>
                 </div>
             </div>
         </div>
@@ -229,6 +204,30 @@
                     </svg>  
                 </button>
             </div>
+        </div>
+    </template>
+
+    <template id="statusTemplate">
+        <div class="card p-3 mb-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="status-game-link" href="#">
+                    <span class="fw-bold status-game-name"></span>
+                </a>
+                <span class="badge bg-secondary status-action"></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="reviewTemplate">
+        <div class="card p-3 mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <a class="review-game-link" href="#">
+                    <span class="fw-bold review-game-name"></span>
+                </a>
+                <span class="review-score"></span>
+            </div>
+            <textarea class="form-control review-message" rows="3" readonly></textarea>
+            <small class="text-muted mt-1 review-date"></small>
         </div>
     </template>
 

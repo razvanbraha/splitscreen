@@ -108,10 +108,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <h6 class="mt-1">Friends' Recent Activity</h6>
-                <div class="friend-activity text-center p-2">
-                    Sign in to see Friend Activity
+            <!-- Right side: Activity -->
+            <div class="col-12 col-md-4 align-self-start">
+                <h6 class="mt-1">Recent Activity</h6>
+                <div class="friend-activity d-flex flex-column gap-2 p-2">
+                    <div id="friend-status-list"></div>
+                    <div id="friend-review-list"></div>
+                    <div id="other-review-list"></div>
                 </div>
             </div>
         </div>
@@ -121,11 +124,37 @@
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
         <div>Footer</div>
     </footer>
-
-    <template id="friendActivityTemplate">
-        <!-- TODO COMPLETE FRIEND ACITIVITY TEMPLATE-->
+    <template id="statusTemplate">
+        <div class="card p-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="status-user-link" href="#">
+                    <span class="fw-bold status-username"></span>
+                </a>
+                <a class="status-game-link" href="#">
+                    <span class="status-game-name"></span>
+                </a>
+            </div>
+            <div class="mt-1">
+                <span class="badge bg-secondary status-action"></span>
+            </div>
+        </div>
     </template>
 
+    <template id="reviewTemplate">
+        <div class="card p-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <a class="review-user-link" href="#">
+                    <span class="fw-bold review-username"></span>
+                </a>
+                <a class="review-game-link" href="#">
+                    <span class="review-game-name text-muted small"></span>
+                </a>
+                <span class="review-score"></span>
+            </div>
+            <textarea class="form-control review-message" rows="3" readonly></textarea>
+            <small class="text-muted mt-1 review-date"></small>
+        </div>
+    </template>
 
     <template id="videogameLesserFeatureTemplate">
         <div class="carousel-item">
