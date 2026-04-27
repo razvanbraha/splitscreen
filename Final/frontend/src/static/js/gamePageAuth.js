@@ -40,6 +40,7 @@ api.getCurrentUser().then(user => {
 
     // Handle existing review
     if (review) {
+        console.log(review.id);
         currentReviewId = review.id;
         const star = document.querySelector(`input[name="starRating"][value="${review.score}"]`);
         if (star) star.checked = true;
@@ -97,6 +98,7 @@ reviewForm.addEventListener('submit', e => {
             .then(() => {
                 reviewTimestamp.textContent = `Updated: ${new Date().toLocaleString()}`;
                 reviewTimestamp.style.display = 'block';
+                globalThis.location.reload();
             }).catch(err => console.log(err));
     } else {
         // Create new review
@@ -105,6 +107,7 @@ reviewForm.addEventListener('submit', e => {
                 currentReviewId = response.id;
                 reviewTimestamp.textContent = `Created: ${new Date().toLocaleString()}`;
                 reviewTimestamp.style.display = 'block';
+                globalThis.location.reload();
             }).catch(err => console.log(err));
     }
 });

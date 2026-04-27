@@ -126,46 +126,67 @@ const getUserFriends = (userId) => {
 /* ------ Activity Routes ------ */
 
 const getUserGameStatus = (userId, gameId) => {
-  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`)
+  return HTTPClient.get(`${BASE_API_PATH}/activities/game/${gameId}/${userId}`)
     .catch(handleAuthError);
 };
 
 const setUserGameStatus = (userId, gameId, status) => {
-  return HTTPClient.put(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`, { status })
+  const data = {
+    status: status,
+  };
+  return HTTPClient.put(`${BASE_API_PATH}/activities/game/${gameId}/${userId}`, data)
     .catch(handleAuthError);
 };
 
 const clearUserGameStatus = (userId, gameId) => {
-  return HTTPClient.delete(`${BASE_API_PATH}/users/${userId}/games/${gameId}/status`)
+  return HTTPClient.delete(`${BASE_API_PATH}/activities/game/${gameId}/${userId}`)
     .catch(handleAuthError);
 };
 
 const getUserActivities = (userId) => {
-  return HTTPClient.get(`${BASE_API_PATH}/users/${userId}/games`)
+  return HTTPClient.get(`${BASE_API_PATH}/activities/${userId}`)
     .catch(handleAuthError);
+};
+
+const getFriendActivities = (friendIds) => {
+    return Promise.all(
+        friendIds.map(id => HTTPClient.get(`${BASE_API_PATH}/activities/${id}`)
+            .catch(() => []))
+    ).then(results => results.flat());
 };
 
 /* ------ Review Routes ------ */
 
 const submitReview = (userId, gameId, score, message) => {
-    return HTTPClient.post(`${BASE_API_PATH}/reviews`, { userId, gameId, score, reviewMessage: message })
+    const data = {
+        userId: userId,
+        gameId: gameId,
+        score: score,
+        reviewMessage: message,
+    };
+    return HTTPClient.post(`${BASE_API_PATH}/reviews`, data)
         .catch(handleAuthError);
 };
 
 const getUserReviewForGame = (userId, gameId) => {
-    return HTTPClient.get(`${BASE_API_PATH}/reviews/user/${userId}/game/${gameId}`)
+    return HTTPClient.get(`${BASE_API_PATH}/reviews/specific/${userId}/game/${gameId}`)
         .catch(handleAuthError);
 };
 
 const updateReview = (reviewId, userId, score, message) => {
-    return HTTPClient.put(`${BASE_API_PATH}/reviews/${reviewId}`, { userId, score, reviewMessage: message })
+    const data = {
+        userId: userId,
+        score: score,
+        reviewMessage: message,
+    };
+    return HTTPClient.put(`${BASE_API_PATH}/reviews/${reviewId}`, data)
         .catch(handleAuthError);
 };
 
 /* ------ Feed Routes ------ */
 
 const getAllReviews = () => {
-    return HTTPClient.get(`${BASE_API_PATH}/reviews`)
+    return HTTPClient.get(`${BASE_API_PATH}/reviews/all`)
         .catch(handleAuthError);
 };
 
@@ -177,13 +198,6 @@ const getReviewsByGame = (gameId) => {
 const getReviewsByUser = (userId) => {
     return HTTPClient.get(`${BASE_API_PATH}/reviews/user/${userId}`)
         .catch(handleAuthError);
-};
-
-const getFriendActivities = (friendIds) => {
-    return Promise.all(
-        friendIds.map(id => HTTPClient.get(`${BASE_API_PATH}/users/${id}/games`)
-            .catch(() => []))
-    ).then(results => results.flat());
 };
 
 export default {

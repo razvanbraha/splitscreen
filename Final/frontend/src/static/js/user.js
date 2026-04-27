@@ -4,11 +4,6 @@ const query = globalThis.location.search;
 const parameters = new URLSearchParams(query);
 const profileId = parameters.get('id');
 
-// Redirect if id param exists but is not a valid positive integer
-if (profileId !== null && (isNaN(profileId) || profileId <= 0 || !Number.isInteger(Number(profileId)))) {
-    globalThis.location.href = '/auth';
-}
-
 const carouselEntryTemplate = document.querySelector('#videogameLesserFeatureTemplate');
 const carouselEmptyTemplate = document.querySelector('#UnselectedSlotTemplate');
 const friendTemplate = document.querySelector('#friendTemplate');
@@ -51,8 +46,8 @@ let currentUser = null;
 
 api.getCurrentUser().then(user => {
     currentUser = user;
-    const targetId = profileId || user.id;
-    const isOwnProfile = !profileId || Number(profileId) === user.id;
+    const targetId = Number.parseInt(profileId);
+    const isOwnProfile = targetId === user.id;
 
     if (isOwnProfile) {
         settingsBtn.style.display = 'block';
@@ -65,7 +60,7 @@ api.getCurrentUser().then(user => {
             api.getUserFavoriteGames(user.id),
             api.getFriends(),
             api.getReviewsByUser(user.id),
-            api.getFriendActivities(user.id)
+            api.getFriendActivities([user.id])
         ]);
     } else {
         settingsBtn.style.display = 'none';
@@ -87,7 +82,7 @@ api.getCurrentUser().then(user => {
             api.getUserFavoriteGames(targetId),
             api.getUserFriends(targetId),
             api.getReviewsByUser(targetId),
-            api.getFriendActivities(targetId)
+            api.getFriendActivities([targetId])
         ]);
     }
 
@@ -96,7 +91,8 @@ api.getCurrentUser().then(user => {
     document.querySelector('#username').innerText = profileUser.username;
     document.querySelector('#name').innerText = `${profileUser.first_name} ${profileUser.last_name}`;
 
-    const isOwnProfile = !profileId || Number(profileId) === currentUser.id;
+    const targetId = Number.parseInt(profileId);
+    const isOwnProfile = targetId === currentUser.id;
 
     // Favorite games
     games.forEach((game) => {
@@ -173,6 +169,28 @@ api.getCurrentUser().then(user => {
             });
         }
     }
+
+    let ratings = [0, 0, 0, 0, 0];
+    let reviewed = reviews.length;
+    reviews.forEach(review => {
+        ratings[review.score - 1]++;
+    })
+
+    for (let i = 0; i < ratings.length; i++) {
+        document.getElementById(`${i + 1}-star`).textContent = `${i + 1} ★ - ${ratings[i]}`;
+    }
+
+    let gameStats = [0, 0, 0, 0]
+    activities.forEach(activity => {
+        if (activity.action === 'playing') { gameStats[0]++ }
+        else if (activity.action === 'finished') { gameStats[1]++ }
+        else { gameStats[2]++ }
+    })
+
+    document.getElementById('playing').textContent = `Playing: ${gameStats[0]} games`
+    document.getElementById('finished').textContent = `Finished: ${gameStats[1]} games`
+    document.getElementById('dropped').textContent = `Dropped: ${gameStats[2]} games`
+    document.getElementById('reviewed').textContent = `Reviewed: ${reviewed} games`
 
     // Activity feed
     activities.slice(0, 3).forEach(a => renderStatus(a));
