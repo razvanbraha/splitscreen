@@ -82,9 +82,9 @@ Use this syntax to embed an image in your markdown file:
 
 #### Razvan Braha
 
-* Contribution 1
-* Contribution 2
-* ...
+* Service Workers
+* Web Manifest
+* Offline Handling
 
 #### Morgan Sawyer
 
@@ -105,4 +105,4 @@ Use this syntax to embed an image in your markdown file:
 
 Razvan Braha  | Morgan Sawyer | Riley Wickens
 ------------- | ------------- | --------------
-X%            | Y%            | 50%
+25%            | Y%            | 50%
