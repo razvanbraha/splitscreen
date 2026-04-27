@@ -20,6 +20,7 @@
 * External API is slow to respond causing long load times
 * External API is no longer being maintained and has occasional outages
 * Styling issues for Activities and Reviews on smaller screens)
+* Game Carousel on Home Screen doesn't scroll
 
 
 ## Authentication & Authorization
