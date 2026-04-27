@@ -73,7 +73,7 @@ Method | Route                                           | Description
 
 Use this syntax to embed an image in your markdown file:
 
-![](images/erd.png)
+![Database Diagram](./database/images/Final_Database.png)
 ```
 
 
@@ -88,9 +88,9 @@ Use this syntax to embed an image in your markdown file:
 
 #### Morgan Sawyer
 
-* Contribution 1
-* Contribution 2
-* ...
+* User Pages Functionality
+* Game Pages Functionality
+* Recent Activity Functionality
 
 #### Riley Wickens
 
@@ -105,4 +105,4 @@ Use this syntax to embed an image in your markdown file:
 
 Razvan Braha  | Morgan Sawyer | Riley Wickens
 ------------- | ------------- | --------------
-25%            | Y%            | 50%
+25%            | 25%            | 50%
