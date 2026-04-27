@@ -42,7 +42,6 @@ exports.TokenMiddleware = (req, res, next) => {
 
 }
 
-
 exports.generateToken = (req, res, user) => {
   let payload = {
     user: user,
@@ -59,7 +58,6 @@ exports.generateToken = (req, res, user) => {
     maxAge: 60 * 60 * 1000 //This session expires in 60 minutes.. but token expires in 1 hour!
   });
 };
-
 
 exports.removeToken = (req, res) => {
   //send session ID in cookie to client

@@ -40,6 +40,7 @@ api.getCurrentUser().then(user => {
 
     // Handle existing review
     if (review) {
+        console.log(review.id);
         currentReviewId = review.id;
         const star = document.querySelector(`input[name="starRating"][value="${review.score}"]`);
         if (star) star.checked = true;
@@ -88,10 +89,6 @@ reviewForm.addEventListener('submit', e => {
     const selectedStar = document.querySelector('input[name="starRating"]:checked');
     if (!selectedStar) return;
 
-
-    console.log('reviewForm:', reviewForm);
-    console.log('reviewMessage:', reviewMessage);
-
     const score = parseInt(selectedStar.value); 
     const message = reviewMessage.value;
 
@@ -101,6 +98,7 @@ reviewForm.addEventListener('submit', e => {
             .then(() => {
                 reviewTimestamp.textContent = `Updated: ${new Date().toLocaleString()}`;
                 reviewTimestamp.style.display = 'block';
+                globalThis.location.reload();
             }).catch(err => console.log(err));
     } else {
         // Create new review
@@ -109,6 +107,7 @@ reviewForm.addEventListener('submit', e => {
                 currentReviewId = response.id;
                 reviewTimestamp.textContent = `Created: ${new Date().toLocaleString()}`;
                 reviewTimestamp.style.display = 'block';
+                globalThis.location.reload();
             }).catch(err => console.log(err));
     }
 });
@@ -119,12 +118,12 @@ const otherReviewList = document.querySelector('#other-review-list');
 const statusTemplate = document.querySelector('#statusTemplate');
 const reviewTemplate = document.querySelector('#reviewTemplate');
 
-const renderStars = (score) => '★'.repeat(score) + '☆'.repeat(5 - score);
+const renderStars = (score) =>  '★'.repeat(score) + '☆'.repeat(5 - score);
 
 const renderStatus = (activity, container) => {
     const instance = statusTemplate.content.cloneNode(true);
     instance.querySelector('.status-username').textContent = activity.user.username;
-    instance.querySelector('.status-user-link').href = `/profile?id=${activity.user.id}`;
+    instance.querySelector('.status-user-link').href = `/user?id=${activity.user.id}`;
     instance.querySelector('.status-game-name').textContent = activity.game.name;
     instance.querySelector('.status-game-link').href = `/gameauth?id=${activity.game.id}`;
     instance.querySelector('.status-action').textContent = activity.action;
@@ -134,7 +133,7 @@ const renderStatus = (activity, container) => {
 const renderReview = (review, container) => {
     const instance = reviewTemplate.content.cloneNode(true);
     instance.querySelector('.review-username').textContent = review.user.username;
-    instance.querySelector('.review-user-link').href = `/profile?id=${review.user.id}`;
+    instance.querySelector('.review-user-link').href = `/user?id=${review.user.id}`;
     instance.querySelector('.review-game-name').textContent = review.game.name;
     instance.querySelector('.review-game-link').href = `/gameauth?id=${review.game.id}`;
     instance.querySelector('.review-score').textContent = renderStars(review.score);
@@ -148,23 +147,24 @@ api.getCurrentUser().then(user => {
     return Promise.all([
         api.getUserFriends(user.id),
         api.getReviewsByGame(id),
-        api.getFriendActivities(user.id)
     ]);
-}).then(([{ friends: friendIds }, gameReviews, allActivities]) => {
-
-    // Friend statuses for this game (cap at 3)
+}).then(([{ friends: friendIds }, gameReviews]) => {
+    return Promise.all([
+        Promise.resolve(friendIds),
+        Promise.resolve(gameReviews),
+        api.getFriendActivities(friendIds)  // now passing friend IDs
+    ]);
+}).then(([friendIds, gameReviews, allActivities]) => {
     const friendStatuses = allActivities
-        .filter(a => friendIds.includes(a.user.id) && a.game.id === Number.parseInt(id))
+        .filter(a => a.game.id === Number.parseInt(id))
         .slice(0, 3);
 
-    // Friend reviews for this game (cap at 3)
     const friendReviews = gameReviews
-        .filter(r => friendIds.includes(r.user.id))
+        .filter(r => friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
-    // Other reviews for this game — exclude friends (cap at 3)
     const otherReviews = gameReviews
-        .filter(r => !friendIds.includes(r.user.id))
+        .filter(r => !friendIds.some(fid => Number(fid) === r.user.id))
         .slice(0, 3);
 
     friendStatuses.forEach(a => renderStatus(a, friendStatusList));

@@ -23,11 +23,17 @@ app.get('/gameauth', (req, res) => {
 });
 
 app.get('/user', (req, res) => {
-  res.sendFile(__dirname + '/templates/user-page.html');
+    const id = req.query.id;
+    if (id !== undefined && (isNaN(id) || id <= 0)) {
+        res.redirect('/auth');
+        return;
+    }
+    res.sendFile(__dirname + '/templates/user-page.html');
 });
 
-app.get('/profile', (req, res) => {
-  res.sendFile(__dirname + '/templates/profile-page.html');
+// Catch all unmatched routes and redirect to home
+app.get('*', (req, res) => {
+  res.redirect('/');
 });
 
 // As our server to listen for incoming connections

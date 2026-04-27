@@ -26,7 +26,12 @@ let gameSearch = async (search) => {
     api.getGameByName(search)
     .then(game => {
         console.log(game);
-        globalThis.location.href = `/game?id=${game.id}`;
+        if (game?.id) {
+            globalThis.location.href = `/game?id=${game.id}`;
+        } else {
+            alert('Unable to find game.');
+            searchInput.value = '';
+        }
     }).catch(err => {
         console.log(err);
         alert('Unable to find game.');

@@ -62,10 +62,9 @@ module.exports = {
     getSpecificUser: (userId) => {
         return db.query('SELECT * FROM user WHERE usr_id=?', [userId]).then(rows => {
             if (rows.length === 1) { // we found our user
-                const user = new User(rows[0]);
-                return user;
+                return new User(rows[0]);
             }
-            throw new Error("No such user");
+            throw { code: 404, message: "No such user" };
         });
     },
 
