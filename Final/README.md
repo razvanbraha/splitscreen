@@ -27,7 +27,7 @@
 User's are able to access some features like seeing games and statistics but are locked out of creating reviews, activities, favoriting games, and adding friends without an account. User's can create an account from any page that doesn't require authorization. The accounts are stored within the db including an id, username, hashed password, password salt, full name, and any content settings. Users who have an account are able to login by entering their username and password which will provide them with a token to prove auth. There are different versions of some pages one that doesn't require Auth with limited functionality, and one requiring authentication with full functionality. Some Pages only have one version and always require Auth.
 
 ## PWA Capabilities
-
+This project supports Progressive Web App behavior by having service workers, a web app manifest, and offline handling. The service worker caches important frontend files like the HTML, JavaScript files, CSS files, images, and the manifest so they can all be loaded with no network connection. The project also uses different caching strategies. Static assets are served from the cache if possible, while some of the API call requests use the network first to try and get fresh data, but still fall back to the cache if not possible. The web app manifest makes the site installable and gives it things like name, theme color, start URL, display mode, and icons.
 <!-- Describe features available to your users offline, caching strategy, installability, theming, etc. -->
 
 
