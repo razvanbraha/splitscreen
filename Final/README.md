@@ -69,12 +69,7 @@ Method | Route                                           | Description
 
 ## Database ER Diagram
 
-```markdown
-
-Use this syntax to embed an image in your markdown file:
-
-![Database Diagram](./database/images/Final_Database.png)
-```
+![Database Diagram](database/images/Final_Database.png)
 
 
 
