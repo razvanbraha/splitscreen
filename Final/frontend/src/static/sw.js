@@ -158,6 +158,14 @@ self.addEventListener('fetch', (event) => {
 
     if (url.origin !== self.location.origin && 
         (request.destination === 'script' || request.destination === 'style')) {
+            // Avoid intercepting cross-origin CORS requests. Fetching cross-origin
+            // resources can return opaque responses which are invalid to pass to
+            // `respondWith()` when the original request's mode is 'cors'. Let
+            // the browser handle CORS cross-origin scripts/styles instead.
+            if (request.mode === 'cors') {
+                return;
+            }
+
             event.respondWith(staleWhileRevalidate(request, STATIC_CACHE));
     }
 });
