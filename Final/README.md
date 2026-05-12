@@ -2,6 +2,17 @@
 
 ## Splitscreen
 
+## Screenshots
+
+### Home Page
+![Home Page](./frontend/src/static/images/homePage.png)
+
+### Game Page
+![Game Page](./frontend/src/static/images/gamePage.png)
+
+### Profile Page
+![Profile Page](./frontend/src/static/images/profilePage.png)
+
 ## Progress Report
 
 ### Completed Features
