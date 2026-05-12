@@ -1,6 +1,6 @@
-# Final Team Project
+# Splitscreen
 
-## Splitscreen
+Splitscreen is a full-stack social gaming web application for discovering games, sharing reviews, tracking play activity, and managing favorites with friends.
 
 ## Screenshots
 
@@ -14,102 +14,92 @@
 ![Profile Page](./frontend/src/static/images/profilePage.png)
 
 ## Progress Report
+## Overview
 
-### Completed Features
+The final application is deployed with Docker Compose, using an Express backend, MariaDB database, and Express-based frontend behind an Nginx reverse proxy.
 
-* Profile Features (Review & Activity statistics, Friend Managment, Account Management, Favourite Game Management)
-* User Pages (View Reviews & Activities and their statistics, View their Friends, View their favourite games) 
-* Friend System (Add, Remove, and view friend's reviews and activities) 
-* PWA Functionality (offlice cache, downloadable app, Favicon browser support)
-* Search Functionality (search for users & Games)
-* Game Pages (Review games, add activities, favourite games)
-* Home Page (View Featured Games, Games Coming Soon, And Recently Released Games, and Recent activity if signed in)
-* Authentication System (Content can be restricted, some content is avaliable without an account but it is different to that avaliable with)
+## Key features
 
-### Known Issues & Limitations
+- User authentication with JWT sessions
+- Game search and details powered by external game data
+- Reviews and ratings with per-user history
+- Activity tracking for played, playing, and wishlist statuses
+- Favorites management and personalized libraries
+- Friend system and shared activity feeds
+- Progressive Web App support with offline caching and installability
 
-* External API is slow to respond causing long load times
-* External API is no longer being maintained and has occasional outages
-* Styling issues for Activities and Reviews on smaller screens)
-* Game Carousel on Home Screen doesn't scroll
+## Setup
 
+1. Copy `Final/.env.template` to `Final/.env` and provide the required values.
+2. From the `Final/` directory, run:
+   ```bash
+   docker compose up --build
+   ```
+3. Open the application in a browser at `http://localhost`
 
-## Authentication & Authorization
+## Environment variables
 
-User's are able to access some features like seeing games and statistics but are locked out of creating reviews, activities, favoriting games, and adding friends without an account. User's can create an account from any page that doesn't require authorization. The accounts are stored within the db including an id, username, hashed password, password salt, full name, and any content settings. Users who have an account are able to login by entering their username and password which will provide them with a token to prove auth. There are different versions of some pages one that doesn't require Auth with limited functionality, and one requiring authentication with full functionality. Some Pages only have one version and always require Auth.
+Required values in `Final/.env`:
 
-## PWA Capabilities
-This project supports Progressive Web App behavior by having service workers, a web app manifest, and offline handling. The service worker caches important frontend files like the HTML, JavaScript files, CSS files, images, and the manifest so they can all be loaded with no network connection. The project also uses different caching strategies. Static assets are served from the cache if possible, while some of the API call requests use the network first to try and get fresh data, but still fall back to the cache if not possible. The web app manifest makes the site installable and gives it things like name, theme color, start URL, display mode, and icons.
-<!-- Describe features available to your users offline, caching strategy, installability, theming, etc. -->
+- `MYSQL_ROOT_PASSWORD`
+- `MYSQL_DATABASE`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `DB_HOST`
+- `DB_PORT`
+- `PORT`
+- `API_SECRET_KEY`
+- `RAWG_API_KEY`
 
+## Architecture
 
-## API Documentation
+- `api/` — Express API server with authentication and data access
+- `frontend/` — Express web server for the user interface
+- `database/` — MariaDB schema and runtime storage
+- `proxy/` — Nginx reverse proxy configuration
 
-Method | Route                                           | Description
------- | ------------------------------------------------| ----------------------- |
-`POST`  | `/login`                                       | Receives an username and password & provides user token for authentication
-`POST`  | `/logout`                                      | Log out the current user
-`POST`  | `/register`                                    | Creates a new user account and returns the new user object
-`GET`   | `/users/id/:userId`                            | Retrieve a specific user by id
-`GET`   | `/users/current`                               | Retrieves currently logged in user
-`GET`   | `/users/name/:username`                        | Search for a user by username
-`PUT`   | `/users/update/:username`                      | Update user information
-`POST`  | `/reviews/`                                    | Create new review
-`PUT`   | `/reviews/:reviewId`                           | Update existing review
-`GET`   | `/reviews/user/:userId`                        | Get all reviews posted by a user
-`GET`   | `/reviews/specific/:userId/game/:gameId`       | Get a user's reviews for a game
-`GET`   | `/reviews/game/:gameId`                        | Get all reviews for a game
-`GET`   | `/reviews/all`                                 | Get all reviews
-`DELETE`| `/reviews/:reviewId/`                          | Delete specific review
-`GET`   | `/activites/:userId/`                          | Get activities by user
-`GET`   | `/activites/game/:gameId/:userId/`             | Get status of a specific game for a user
-`PUT`   | `/activities/game/:gameId/:userId/`            | update status of a specific game for a user
-`DELETE`| `/activities/game/:gameId/:userId/`            | Clear a status for a user on a game
-`POST`  | `/friends/:friendId`                           | Add a new friend
-`GET`   | `/friends/all`                                 | Get all a user's friends
-`GET`   | `/friends/confirm/:friendId`                   | Confirm user's are friends
-`DElETE`| `/friends/:friendId`                           | Remove a friend
-`GET`   | `/favorite/:userId`                            | Get a user's favorite games
-`POST`  | `/favorite/:gameId`                            | Add a favorite game
-`DELETE`| `/favorite/:gameId`                            | Remove a favorite game
-`GET`   | `/games/featured`                              | Get a featured game from external database
-`GET`   | `/games/recent`                                | Get multiple recently released games
-`GET`   | `/games/anticpated`                            | Get multiple coming soon games
-`GET`   | `/games/id/:gameId`                            | Retrieves a game by its Id
-`GET`   | `/games/name/:gameName`                        | Retrieves a game by its Name
+## API routes
 
+Method | Route | Description
+--- | --- | ---
+`POST` | `/login` | Authenticate a user and return a JWT token
+`POST` | `/logout` | End the current user session
+`POST` | `/register` | Create a new user account
+`GET` | `/users/id/:userId` | Get user details by ID
+`GET` | `/users/current` | Get the currently authenticated user
+`GET` | `/users/name/:username` | Search users by username
+`PUT` | `/users/update/:username` | Update user profile data
+`POST` | `/reviews` | Create a new review
+`PUT` | `/reviews/:reviewId` | Update a review
+`GET` | `/reviews/user/:userId` | Get reviews written by a user
+`GET` | `/reviews/specific/:userId/game/:gameId` | Get a user's review for a game
+`GET` | `/reviews/game/:gameId` | Get reviews for a game
+`GET` | `/reviews/all` | Get all reviews
+`DELETE` | `/reviews/:reviewId` | Delete a review
+`GET` | `/activities/:userId` | Get activity records for a user
+`GET` | `/activities/game/:gameId/:userId` | Get a user's activity status for a game
+`PUT` | `/activities/game/:gameId/:userId` | Update activity status for a game/user pair
+`DELETE` | `/activities/game/:gameId/:userId` | Clear a user's activity status for a game
+`POST` | `/friends/:friendId` | Add a friend request
+`GET` | `/friends/all` | Get a user's friends
+`GET` | `/friends/confirm/:friendId` | Confirm a friendship
+`DELETE` | `/friends/:friendId` | Remove a friend
+`GET` | `/favorite/:userId` | Get a user's favorite games
+`POST` | `/favorite/:gameId` | Add a favorite game
+`DELETE` | `/favorite/:gameId` | Remove a favorite game
+`GET` | `/games/featured` | Get featured games
+`GET` | `/games/recent` | Get recently released games
+`GET` | `/games/anticipated` | Get coming soon games
+`GET` | `/games/id/:gameId` | Get game details by ID
+`GET` | `/games/name/:gameName` | Search games by name
 
-## Database ER Diagram
+## Known limitations
 
-![Database Diagram](database/images/Final_Database.png)
+- External game data API can be slow or unavailable
+- Some UI layouts may need refinement on smaller screens
+- Game carousel behavior may not be fully responsive across browsers
 
+## Notes
 
-
-## Team Member Contributions
-
-#### Razvan Braha
-
-* Service Workers
-* Web Manifest
-* Offline Handling
-
-#### Morgan Sawyer
-
-* User Pages Functionality
-* Game Pages Functionality
-* Recent Activity Functionality
-
-#### Riley Wickens
-
-* Reworked Authentication
-* Search Functionality
-* Game Functionality
-* Friends Functionality
-* Finalised Styling
-* Favorite Game Functionality
-
-#### Milestone Effort Contribution
-
-Razvan Braha  | Morgan Sawyer | Riley Wickens
-------------- | ------------- | --------------
-25%            | 25%            | 50%
+- `Final/database/data/` is excluded from version control and stores local MariaDB data.
+- The `Milestone1/`, `Milestone2/`, and `Proposal/` directories are archived artifacts and not required to run the final application.

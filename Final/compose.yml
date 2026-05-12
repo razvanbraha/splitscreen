@@ -1,4 +1,4 @@
-name: csc342project
+name: splitscreen
 
 services:
   proxy:
