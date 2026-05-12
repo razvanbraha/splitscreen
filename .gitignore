@@ -1,3 +1,8 @@
 node_modules/
 .env
 database/data/
+Final/database/data/
+Final/.env
+Final/.env.*
+Final/**/node_modules/
+.DS_Store
